@@ -20,6 +20,7 @@
 	dto.setIp(ip);
 
 	int res=dao.update(dto);
+	///////////////////////////
 
 	if(res==0){
 		out.print("<p>수정 실패<p>");
