@@ -1,0 +1,83 @@
+/* mystyle.css */
+
+  body {
+	text-align:center;
+	margin:20px; 0px; 0px; 0px;
+	padding:0px; 0px; 0px; 0px;
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  
+  table {
+	background-color: #ffcc33;
+	color:#003399;
+	text-align:center;
+	margin:auto;
+	border-width: 1px;
+	border-collapse:collapse;	/* 테이블 테두리 선 표시 옵션
+											separate : 기본값
+											collapse : 선 하나로 */
+	width: 90%
+}
+
+td, th{
+	margin:auto;
+	background-color:#fdf2d2;
+	border: 1px solid #ffccff;
+	padding: 10px 10px 10px 10px;
+}
+
+.line {border: 1px solid black;}
+
+a:link   {color: #0066ff; font-weight:bold; text-decoration: none;}
+a:visited{color: #0066ff;text-decoration: none;}
+a:hover  {color: #cc00cc; font-weight:bold; text-decoration: underline;}
+a:active {color: black;text-decoration: none;}
+
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color: #d8edfa;
+    color: #ffffff;
+  }
+  .bg-2 { 
+    background-color: #c2e3fe;
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: white;
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f;
+    color: #fff;
+  }
+    .bg-5 {
+    background-color: #8cc4d9;
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  
+    .container-fluid2 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  
