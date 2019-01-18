@@ -116,7 +116,26 @@ FROM tb_bbs
 WHERE subject LIKE '%무궁화%';
 
 
+--190119
+--페이징
+--rownum(줄번호) 활용
 
+1)
+from tb_bbs
+order by grpno desc, ansnum asc;
+
+2) rownum 추가
+SELECT bbsno, subject, grpno, ansnum, rownum
+FROM tb_bbs
+ORDER BY grpno DESC, ansnum ASC;
+
+3)
+SELECT aa.bbsno, aa.subject, aa.grpno, aa.ansnum, rownum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum
+	FROM tb_bbs
+	ORDER BY grpno DESC, ansnum ASC
+) aa;
 
 
 

@@ -10,9 +10,10 @@
 </p>
 
 <form method="post" action="bbsDelProc.jsp" onsubmit="return pwCheck(this)">
-<input type="hidden" name="bbsno"
-		  value="<%=request.getParameter("bbsno") %>">
-
+	<input type="hidden" name="bbsno" value="<%=request.getParameter("bbsno") %>">
+	<input type="hidden" name="col" value="<%=request.getParameter("col")%>">
+	<input type="hidden" name="word" value="<%=request.getParameter("word")%>">
+	<input type="hidden" name="nowPage" value="<%=request.getParameter("nowPage")%>">
 <table>
 		<tr>
 			<th>비밀번호</th>

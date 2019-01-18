@@ -355,6 +355,7 @@ public class BbsDAO {
 		StringBuilder sql=null;
 		ArrayList<BbsDTO> list=null;
 		
+		
 		try {
 			con=dbopen.getConnection();
 			sql=new StringBuilder();
@@ -405,6 +406,106 @@ public class BbsDAO {
 		return list;
 		
 	}//list() end
+	
+	public ArrayList<BbsDTO> list(String col, String word, int nowPage, int recordPerPage) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    ArrayList<BbsDTO> list = null;
+
+	    // 10: 페이지당 출력할 레코드 갯수
+	    int startRow = ((nowPage-1) * recordPerPage) + 1; // (0 * 10) + 1 = 1, 11, 21
+	    int endRow = nowPage * recordPerPage;             // 1 * 10 = 10, 20, 30
+	    
+	    /*
+	     1 page: WHERE r >= 1 AND r <= 10;
+	     2 page: WHERE r >= 11 AND r <= 20;
+	     3 page: WHERE r >= 21 AND r <= 30;
+	     */
+	    
+	    
+	    try {
+	      con = dbopen.getConnection();
+	      StringBuffer sql = new StringBuffer();
+	      
+	      word = word.trim(); // 문자열 좌우 공백 제거
+	      
+	      if (word.length() == 0){ // 검색을 안하는 경우
+	        sql.append(" SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, r");
+	        sql.append(" FROM(");
+	        sql.append("      SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, rownum as r");
+	        sql.append("      FROM (");
+	        sql.append("           SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum");
+	        sql.append("           FROM tb_bbs ");
+	        sql.append("           WHERE indent=0 ");
+	        sql.append("           ORDER BY grpno DESC, ansnum ASC");
+	        sql.append("      )");
+	        sql.append(" )     ");
+	        sql.append(" WHERE r >= "+startRow+" AND r <= "+endRow);
+	        
+	        pstmt = con.prepareStatement(sql.toString());
+	        
+	      }
+	      else{ // 검색을 하는 경우
+	        sql.append(" SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, r");
+	        sql.append(" FROM(");
+	        sql.append("      SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, rownum as r");
+	        sql.append("      FROM (");
+	        sql.append("           SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum");
+	        sql.append("           FROM tb_bbs ");
+	        
+	        //검색
+	        if(word.length()>=1){
+	          String search=" WHERE "+col+" LIKE '%"+word+"%' AND indent=0 ";
+	          sql.append(search);
+	        } 
+	        
+	        sql.append("           ORDER BY grpno DESC, ansnum ASC");
+	        sql.append("      )");
+	        sql.append(" )     ");
+	        sql.append(" WHERE r >= "+startRow+" AND r <= "+endRow);
+	        
+	        pstmt = con.prepareStatement(sql.toString());
+
+	      }
+	      
+	      rs=pstmt.executeQuery();
+	      if(rs.next()) {
+	        list=new ArrayList<BbsDTO>();
+	        BbsDTO dto=null; //레코드 1개보관
+	        do {
+	          dto=new BbsDTO();
+	          dto.setBbsno(rs.getInt("bbsno"));
+	          dto.setSubject(rs.getString("subject"));
+	          dto.setReadcnt(rs.getInt("readcnt"));
+	          dto.setWname(rs.getString("wname"));
+	          dto.setRegdt(rs.getString("regdt"));
+	          dto.setGrpno(rs.getInt("grpno"));
+	          dto.setIndent(rs.getInt("indent"));
+	          dto.setAnsnum(rs.getInt("ansnum"));
+	          list.add(dto);
+	        }while(rs.next());
+	      }
+
+	    } catch (Exception e) {
+	      System.out.println(e.toString());
+	    } finally {
+	      dbclose.close(con, pstmt, rs);
+	    }
+
+	    return list;
+	    
+	  } // list() end
+	
+	public void replyCnt(int grpno, int indent, ) {
+		
+		
+		
+		
+		
+		
+		
+	}//replyCnt() end
 	
 
 	private DBOpen getConnection() {

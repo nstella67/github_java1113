@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="./ssi.jsp" %>
+<%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 bbsUpdateProc.jsp -->
@@ -22,13 +22,13 @@
 	int res=dao.update(dto);
 	///////////////////////////
 
-	if(res==0){ 
+	if(res==0){
 		out.print("<p>수정 실패<p>");
 		out.print("<p><a href='javascript:history.back();'>[다시시도]</a><p>");
 	}else {
 		out.print("<script>");
 		out.print("  alert('수정 성공');");
-		out.print("  location.href='bbsList.jsp?col="+col+"&word="+word+"&nowPage="+nowPage+"';");
+		out.print("  location.href='bbsList.jsp?col="+col+"&word="+word+"';");
 		out.print("</script>");
 	}
 %>

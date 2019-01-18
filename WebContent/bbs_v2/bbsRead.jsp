@@ -56,7 +56,6 @@
 				<input type="hidden" name="bbsno" value="<%=bbsno%>">
 				<input type="hidden" name="col" value="<%=col%>">
 				<input type="hidden" name="word" value="<%=word%>">
-				<input type="hidden" name="nowPage" value="<%=nowPage%>">
 				<input type="button" value="목록" onclick="move(this.form, 'bbsList.jsp')">
 				<input type="button" value="답변" onclick="move(this.form, 'bbsReply.jsp')">
 				<input type="button" value="수정" onclick="move(this.form, 'bbsUpdate.jsp')">

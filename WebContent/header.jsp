@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>My Web</title>
+  <title>Nuri Nuri Nuri Nuri Nuri Nuri Nuri</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css?fffftt">
   <link rel="stylesheet" href="../css/style.css?ver=1">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="../jsp/jquery-3.3.1.min.js"></script>

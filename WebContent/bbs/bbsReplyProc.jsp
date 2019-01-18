@@ -29,7 +29,7 @@
 	}else {
 		out.print("<script>");
 		out.print("  alert('답변글 성공');");
-		out.print("  location.href='bbsList.jsp?col="+col+"&word="+word+"';");
+		out.print("  location.href='bbsList.jsp?col="+col+"&word="+word+"&nowPage="+nowPage+"';");
 		out.print("</script>");
 	}
 %>

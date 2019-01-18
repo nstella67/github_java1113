@@ -31,7 +31,7 @@
 		else {
 		  out.print("<script>");
 		  out.print("  alert('글쓰기 성공');");
-		  out.print("  window.location='bbsList.jsp?col="+col+"&word="+word+"';");
+		  out.print("  window.location='bbsList.jsp';");
 		  out.print("</script>");
 		}
 %>

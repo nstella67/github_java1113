@@ -5,9 +5,8 @@
 <!-- 본문 시작 bbsList.jsp -->
 	<h3>* 글 목록 *</h3>
 	<p><a href="bbsForm.jsp">[글쓰기]</a></p>
-	<p><a href="bbsComment.jsp">[댓글 목록]</a></p>
 	
-	<table border="1">
+	<table>
 		<tr>
 			<th>글번호</th>
 			<th>작성자</th>
@@ -21,21 +20,18 @@
 		//글갯수
 		int totalRecord=dao.count(col, word);
 	
-		//한페이지당 출력할 글의 줄수
-		int recordPerPage=10;
-	
-		//전체목록
-		ArrayList<BbsDTO> list=dao.list(col, word, nowPage, recordPerPage);
-		if(list==null){
-			out.println("<tr>");
-			out.println("	<td colspan='5'>글없음!!</td>");
-			out.println("</tr>");
-		}else{
-			//오늘날짜를 "2019-01-16" answkduf wkrtjd
-			String today=Utility.getDate();
-			
-			for(int idx=0; idx<list.size(); idx++){
-				dto=list.get(idx);
+			//전체목록
+			ArrayList<BbsDTO> list=dao.list(col, word);
+			if(list==null){
+				out.println("<tr>");
+				out.println("	<td colspan='5'>글없음!!</td>");
+				out.println("</tr>");
+			}else{
+				//오늘날짜를 "2019-01-16" answkduf wkrtjd
+				String today=Utility.getDate();
+				
+				for(int idx=0; idx<list.size(); idx++){
+					dto=list.get(idx);
 		%>
 			<tr>
 				<td><%=dto.getBbsno()%></td>
@@ -47,7 +43,7 @@
 						out.print("<img src='../images/reply.gif' width='30'>");
 					}
 				%>				
-				<a href="bbsRead.jsp?bbsno=<%=dto.getBbsno() %>&col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>&recordPerPage=<%=recordPerPage%>"><%=dto.getSubject() %></a>
+				<a href="bbsRead.jsp?bbsno=<%=dto.getBbsno() %>&col=<%=col%>&word=<%=word%>"><%=dto.getSubject() %></a>
 					<%
 					// 오늘 작성한 글제목 뒤에 new이미지 출력
 					// 작성일에서 "년월일"만 자르기 → 예)2019-01-16
@@ -61,8 +57,6 @@
 					if(dto.getReadcnt()>=10){
 						out.println("<img src='../images/tenor (8).gif' width='30'>");
 					}
-					
-
 					%>
 				</td>
 				<td><%=dto.getReadcnt() %></td>
@@ -71,6 +65,7 @@
 			</tr>
 		<%
 			}//for end
+				
 			
 			//글갯수
 			out.println("<tr>");
@@ -82,17 +77,6 @@
 			out.println("</tr>");
 			
 		%>
-		<!-- 페이지 리스트 시작 -->
-		<tr>
-			<td colspan="6">
-			<%
-			String paging = new Paging().paging(totalRecord, nowPage, recordPerPage, col, word, "bbsList.jsp");
-			out.println(paging);
-			%>
-			</td>
-		</tr>
-		<!-- 페이지 리스트 끝 -->
-		
 		
 		<!-- 검색시작 -->
 		<tr>

@@ -27,7 +27,7 @@
 				<input type="hidden" name="bbsno"  value="<%=bbsno%>">
 				<input type="hidden" name="col"  value="<%=col%>">
 				<input type="hidden" name="word"  value="<%=word%>">
-				<input type="hidden" name="nowPage"  value="<%=nowPage%>">
+				<input type="hidden" name="passwd"  value="<%=passwd%>">
 				<table>
 				<tr>
 					<th>작성자</th>

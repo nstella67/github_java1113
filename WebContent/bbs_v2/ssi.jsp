@@ -28,12 +28,4 @@
 	col = Utility.checkNull(col);	//null이면 공백문자열 반환
 	word=Utility.checkNull(word);
 //------------------------------------------------------------------------------------
-
-//현재페이지
-	int nowPage=1;
-	if(request.getParameter("nowPage")!=null){
-		nowPage=Integer.parseInt(request.getParameter("nowPage"));
-	}
-
-//------------------------------------------------------------------------------------
 %>
