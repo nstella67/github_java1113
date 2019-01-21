@@ -425,8 +425,8 @@ public class BbsDAO {
 	    
 	    
 	    try {
-	      con = dbopen.getConnection();
-	      StringBuffer sql = new StringBuffer();
+	    	con=dbopen.getConnection();
+			sql=new StringBuilder();
 	      
 	      word = word.trim(); // 문자열 좌우 공백 제거
 	      
@@ -437,7 +437,7 @@ public class BbsDAO {
 	        sql.append("      FROM (");
 	        sql.append("           SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum");
 	        sql.append("           FROM tb_bbs ");
-	        sql.append("           WHERE indent=0 ");
+	        //sql.append("           WHERE indent=0 ");
 	        sql.append("           ORDER BY grpno DESC, ansnum ASC");
 	        sql.append("      )");
 	        sql.append(" )     ");
@@ -456,7 +456,7 @@ public class BbsDAO {
 	        
 	        //검색
 	        if(word.length()>=1){
-	          String search=" WHERE "+col+" LIKE '%"+word+"%' AND indent=0 ";
+	          String search=" WHERE "+col+" LIKE '%"+word+"%' ";	// AND indent=0
 	          sql.append(search);
 	        } 
 	        
@@ -497,15 +497,97 @@ public class BbsDAO {
 	    
 	  } // list() end
 	
-	public void replyCnt(int grpno, int indent, ) {
-		
-		
-		
-		
-		
-		
+/*	public void replyCnt(int grpno, int indent, ) {
 		
 	}//replyCnt() end
+*/	
+	
+	public ArrayList<BbsDTO> comment(String col, String word, int nowPage, int recordPerPage) {
+		Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    ArrayList<BbsDTO> comment = null;
+	    
+		int startRow = ((nowPage-1) * recordPerPage) + 1;
+	    int endRow = nowPage * recordPerPage;
+
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			word = word.trim(); // 문자열 좌우 공백 제거
+			if (word.length() == 0){ // 검색을 안하는 경우
+				sql.append(" SELECT bbsno, subject, wname, readcnt, regdt, grpno, cnt, rnum");
+				sql.append(" FROM (");
+				sql.append("	SELECT bbsno, subject, wname, readcnt, regdt, grpno, cnt, rownum as rnum");
+				sql.append("	FROM (");
+				sql.append("		SELECT bb.bbsno, bb.subject, bb.wname, bb.readcnt, aa.grpno, aa.cnt, bb.regdt");
+				sql.append("		FROM(");
+				sql.append("			SELECT grpno, COUNT(grpno)-1 as cnt");
+				sql.append("			FROM tb_bbs bb");
+				sql.append("			GROUP BY grpno");
+				sql.append("			) aa JOIN tb_bbs bb");
+				sql.append("		ON aa.grpno=bb.grpno");
+				sql.append("		WHERE bb.indent=0");
+				sql.append("		ORDER BY grpno DESC");
+				sql.append("	)");
+				sql.append(" )");
+				sql.append(" WHERE rnum >= "+startRow+" AND rnum <= "+endRow +" AND cnt!=0");
+	
+				pstmt=con.prepareStatement(sql.toString());
+			
+			}else {
+				sql.append(" SELECT bbsno, subject, grpno, cnt, wname, readcnt, regdt,  rnum ");
+				sql.append(" FROM ( ");
+				sql.append(" 	SELECT bbsno, subject, wname, readcnt, regdt, grpno, cnt, rownum as rnum ");
+				sql.append(" FROM ( ");
+				sql.append(" 		SELECT bb.bbsno, bb.subject, bb.wname, bb.readcnt, aa.grpno, aa.cnt, bb.regdt ");
+				sql.append(" 		FROM( ");
+				sql.append(" 			SELECT grpno, COUNT(grpno)-1 as cnt ");
+				sql.append(" 			FROM tb_bbs ");
+		        
+		        //검색
+		        if(word.length()>=1){
+			        String search=" WHERE "+col+" LIKE '%"+word+"%' ";
+			        sql.append(search);
+		        } 
+		        
+		        sql.append("			GROUP BY grpno ");
+		        sql.append("			) aa JOIN tb_bbs bb ");
+		        sql.append("		ON aa.grpno=bb.grpno ");
+		        sql.append("		WHERE bb.indent=0 ");
+		        sql.append("		ORDER BY grpno DESC "); 
+		        sql.append("	) ");
+		        sql.append(") ");
+		        sql.append(" WHERE rnum >= "+startRow+" AND rnum<= "+endRow+" AND cnt!=0" );
+		        
+		        pstmt = con.prepareStatement(sql.toString());
+
+		    }
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				comment=new ArrayList<>();		//전체저장
+				do {
+					BbsDTO dto=new BbsDTO();	//한줄저장
+					dto.setBbsno(rs.getInt("bbsno"));
+					dto.setSubject(rs.getString("subject"));
+					dto.setGrpno(rs.getInt("grpno"));
+					dto.setComment(rs.getInt("cnt"));
+					dto.setReadcnt(rs.getInt("readcnt"));
+					dto.setWname(rs.getString("wname"));
+					dto.setRegdt(rs.getString("regdt"));
+					comment.add(dto);
+				}while(rs.next());
+			}//if end
+		}catch (Exception e) {
+		      System.out.println(e.toString());
+		}finally {
+		     dbclose.close(con, pstmt, rs);
+		}
+		return comment;
+	}//comment() end
+	
 	
 
 	private DBOpen getConnection() {

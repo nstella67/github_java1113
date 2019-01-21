@@ -40,6 +40,16 @@ function showtime(){
 			document.myform.clock.value=str;
 			timer = setTimeout(showtime, 1000);
 		}//showtime() end
+
+function del(){
+   if(confirm("삭제할까요?")){
+       alert("확인을 선택했습니다");
+   }
+   else{
+       alert("취소를 선택했습니다");
+   }
+   return;
+}
 		
 
 function bbsCheck(f){	//답변형 게시판 유효성검사

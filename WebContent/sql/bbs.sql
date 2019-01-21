@@ -137,12 +137,149 @@ FROM (
 	ORDER BY grpno DESC, ansnum ASC
 ) aa;
 
+4) alias 생략가능
+SELECT bbsno, subject, grpno, ansnum, rownum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum
+	FROM tb_bbs
+	ORDER BY grpno DESC, ansnum ASC
+);
+
+5) 줄번호 1~3 검색 - 1페이지
+SELECT bbsno, subject, grpno, ansnum, rownum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum
+	FROM tb_bbs
+	ORDER BY grpno DESC, ansnum ASC
+)
+WHERE rownum>=1 AND rownum<=3
+;
+
+6) 줄번호 4~6 검색 - 2페이지
+SELECT bbsno, subject, grpno, ansnum, rownum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum
+	FROM tb_bbs
+	ORDER BY grpno DESC, ansnum ASC
+)
+WHERE rownum>=4 AND rownum<=6
+;
+--안나옴
+
+7) 줄번호 4~6 검색 - 2페이지 다시검색
+SELECT bbsno, subject, grpno, ansnum, rnum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum AS rnum
+	FROM (
+		SELECT bbsno, subject, grpno, ansnum
+		FROM tb_bbs
+		ORDER BY grpno DESC, ansnum ASC
+	) aa
+) bb
+WHERE rnum>=4 AND rnum<=6
+;
+
+8) alias 생략 가능
+SELECT bbsno, subject, grpno, ansnum, rnum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum AS rnum
+	FROM (
+		SELECT bbsno, subject, grpno, ansnum
+		FROM tb_bbs
+		ORDER BY grpno DESC, ansnum ASC
+	) 
+) 
+WHERE rnum>=4 AND rnum<=6
+;
+
+9) 페이징 + 검색
+	제목에 '솔데스크' 검색
+SELECT bbsno, subject, grpno, ansnum, rnum
+FROM (
+	SELECT bbsno, subject, grpno, ansnum, rownum AS rnum
+	FROM (
+		SELECT bbsno, subject, grpno, ansnum
+		FROM tb_bbs
+		WHERE subject LIKE '%솔데스크%';
+		ORDER BY grpno DESC, ansnum ASC
+	)
+)
+WHERE rnum>=4 AND rnum<=6
+;
+
+
+SELECT * FROM TB_BBS
+WHERE indent=0
+;
 
 
 
+SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, r
+FROM(
+	SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum, rownum AS r
+	FROM (
+		SELECT bbsno, wname, subject, readcnt, regdt, grpno, indent, ansnum
+		FROM tb_bbs
+		WHERE indent=0
+		ORDER BY grpno DESC, ansnum ASC
+	)
+)
+WHERE r >= 1 AND r <= 20;
+
+SELECT * FROM TB_BBS;
 
 
 
+--[댓글 갯수 구하기]
+-- 출력결과
+  부모글제목	답변갯수	조회수	작성자	작성일
+  안녕하세요	(1)
+  김연아			(2)
+--1)
+SELECT subject, grpno, indent, ansnum
+FROM tb_bbs
+ORDER BY grpno DESC
+;
+--2) grpno가 동일한 레코드를 그룹화하고 갯수 구하기
+SELECT grpno, COUNT(grpno) as cnt
+FROM tb_bbs
+GROUP BY grpno
+;
+--3) 2)에서 나온 갯수는 부모글+자식글이므로 갯수에서 -1을 한다 
+SELECT grpno, COUNT(grpno)-1 as cnt
+FROM tb_bbs
+GROUP BY grpno
+;
+
+--4)  3)의 논리적테이블에 셀프조인해서 최초 부모글 제목 가져오기
+SELECT  bb.bbsno bbsno, bb.subject subject, aa.grpno grpno, aa.cnt cnt
+	FROM(
+	SELECT grpno, COUNT(grpno)-1 as cnt
+	FROM tb_bbs
+	GROUP BY grpno) aa JOIN tb_bbs bb
+ON aa.grpno=bb.grpno
+WHERE bb.indent=0		--최초 부모글
+ORDER BY grpno DESC
+;
+
+
+SELECT bbsno, subject, wname, readcnt, regdt, grpno, cnt, rnum
+FROM (
+	SELECT bbsno, subject, wname, readcnt, regdt, grpno, cnt, rownum as rnum
+	FROM (
+		SELECT bb.bbsno, bb.subject, bb.wname, bb.readcnt, aa.grpno, aa.cnt, bb.regdt
+		FROM(
+			SELECT grpno, COUNT(grpno)-1 as cnt
+			FROM tb_bbs
+			GROUP BY grpno
+			) aa JOIN tb_bbs bb
+		ON aa.grpno=bb.grpno
+		WHERE bb.indent=0
+		ORDER BY grpno DESC
+	)
+)
+WHERE rnum>=1 AND rnum<=30 AND cnt!=0
+;
 
 
 

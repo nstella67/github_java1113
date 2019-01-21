@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>*NN*</title>
+  <title>*NN Home*</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -37,13 +37,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="./bbs/bbsList.jsp">게시판</a></li>
-        <li><a href="#">공지사항</a></li>
-        <li><a href="#">로그인</a></li>
-        <li><a href="#">포토갤러리</a></li>
-        <li><a href="#">메일보내기</a></li>
-        <li><a href="#">게시판(MVC)</a></li>
-        <li><a href="#">로그인(MVC)</a></li>
+        <li><a href="./bbs/bbsList.jsp">Board</a></li>
+        <li><a href="#">Notice</a></li>
+        <li><a href="./member/loginForm.jsp">Log in</a></li>
+        <li><a href="#">Photo</a></li>
+        <li><a href="#">Mail</a></li>
+        <li><a href="#">board(MVC)</a></li>
+        <li><a href="#">log in(MVC)</a></li>
       </ul>
     </div>
   </div>

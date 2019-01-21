@@ -12,6 +12,7 @@ public class BbsDTO {
 	  private int indent;
 	  private int ansnum;
 	  private String ip;
+	  private int comment;		//답변갯수
 	  
 	  //기본생성자, getter, setter, toString()
 	  public BbsDTO() {}
@@ -169,7 +170,19 @@ public class BbsDTO {
 	public void setIp(String string) {
 		this.ip = string;
 	}
-	  
-	  
+
+	/**
+	 * @return the comment
+	 */
+	public int getComment() {
+		return comment;
+	}
+
+	/**
+	 * @param comment the comment to set
+	 */
+	public void setComment(int comment) {
+		this.comment = comment;
+	}
 	
 }//class end

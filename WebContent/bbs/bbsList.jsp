@@ -61,8 +61,6 @@
 					if(dto.getReadcnt()>=10){
 						out.println("<img src='../images/tenor (8).gif' width='30'>");
 					}
-					
-
 					%>
 				</td>
 				<td><%=dto.getReadcnt() %></td>
@@ -109,11 +107,13 @@
 				</form>
 			</td>
 		<!-- 검색끝 -->
-		
+		</tr>
 		<%
 		}//if end
 		%>
 		</table>
+		
+		
 <!-- 본문 끝 -->
 
 <%@ include file="../footer.jsp" %>
