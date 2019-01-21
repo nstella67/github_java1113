@@ -40,14 +40,20 @@ a:active {color: black;text-decoration: none;}
   .bg-1 { 
     background-color: #d8edfa;
     color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   .bg-2 { 
     background-color: #c2e3fe;
     color: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   .bg-3 { 
     background-color: white;
     color: #555555;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   .bg-4 { 
     background-color: #2f2f2f;

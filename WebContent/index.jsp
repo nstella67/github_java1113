@@ -70,7 +70,7 @@
 <!-- Third Container (Grid) -->
 <div class="container-fluid bg-3 text-center">    
   <h3 class="margin">나만의 공간</h3><br>
-    </div>
+</div>
 
 <!-- Footer -->
 <footer class="container-fluid2 bg-4 text-center">

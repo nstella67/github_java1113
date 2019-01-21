@@ -45,7 +45,9 @@
 			</tr>
 			<tr>
 				<th>Ip</th>
-				<td><%=dto.getIp() %></td>
+				<td onclick="window.open('http://<%=dto.getIp() %>:9090/myweb/bbs/bbsList.jsp');">
+					<%=dto.getIp() %>
+				</td>
 			</tr>
 			<tr>
 				<th>작성일</th>
