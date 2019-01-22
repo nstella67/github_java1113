@@ -28,6 +28,24 @@ td, th{
 	padding: 10px 10px 10px 10px;
 }
 
+
+/* writefrm class style */
+
+.writefrm{
+	width:50%;
+	margin:0 auto;
+	margin-top:30px;
+	margin-bottom:30px;
+	text-align: center;
+	border: 0px none;
+}
+.writefrm td, .writefrm th{
+	font-size:70%;
+	padding: 5px 20px 5px 20px;
+	white-space:nowrap;
+	text-align: left;
+}
+
 .line {border: 1px solid black;}
 
 a:link   {color: #0066ff; font-weight:bold; text-decoration: none;}

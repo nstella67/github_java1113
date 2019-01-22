@@ -4,37 +4,35 @@
 * 회/원/가/입 *<br><br>
 <form name="regForm"
       method="post"
-      action="memberProc.jsp"
+      action="memberProc2.jsp"
       onsubmit="return memberCheck(this)">
 <span style="color:red; font-weight: bold">* 필수입력</span>
 <br>
 <table border="1" class="writefrm">
 <tr>
-	<th style="color:#bf0000;">* 아이디</th>
+	<th>*아이디</th>
 	<td>
       <input type="text" name="id" id="id" size="15"  readonly>
       <input type="button" value="ID중복확인"  onclick="idCheck()">	
-      <br> *5~10 글자 입력(숫자,특수문자 사용 불가)*
+      <br> *아이디는 5~10 글자 입력*
 	</td>
 </tr>
 <tr>
-	<th style="color:#bf0000;">* 비밀번호</th>
+	<th>*비밀번호</th>
 	<td><input type="password" name="passwd" id="passwd" size="15" required>
-		&nbsp;&nbsp;*영문, 숫자, 특수문자 포함 5~16 글자 입력*
+			<br> *비밀번호는 영문,숫자,특수문자 포함 5~16 글자 입력*
 	</td>
 </tr>
 <tr>
-	<th style="color:#bf0000;">* 비밀번호 확인</th>
+	<th>*비밀번호 확인</th>
 	<td><input type="password" name="repasswd" id="repasswd" size="15" required></td>
 </tr>
 <tr>
-	<th style="color:#bf0000;">* 이름</th>
-	<td><input type="text" name="mname" id="mname" size="15" required>
-		&nbsp;&nbsp;*2~20 글자 입력(숫자,특수문자 사용 불가)*
-	</td>
+	<th>*이름</th>
+	<td><input type="text" name="mname" id="mname" size="15" required></td>
 </tr>
 <tr>
-	<th style="color:#bf0000;">* 이메일</th>
+	<th>*이메일</th>
 	<td>
       <input type="text" name="email" id="email" size="30" readonly>
       <!-- <input type="text" name="email" id="email" size="30" readonly> -->

@@ -123,6 +123,140 @@ function searchCheck(f){
 }//searchCheck() end
 
 
+function idCheck(){
+	//아이디 중복확인
+	
+	//새창 만들기
+	//window.open("파일명", "창이름", "다양한 옵션")
+	window.open("idCheckForm.jsp", "idwin", "width=400, height=350");
+	
+	//새창이 출력되는 위치 지정
+	var sx=parseInt(screen.width);	//모니터 해상도 넓이
+	var sy=parseInt(screen.height);	//모니터 해상도 높이
+	var x=(sx/2)+50;
+	var y=(sy/2)-25;
+	
+	//화면이동
+	win.moveTo(x, y);
+	
+	
+	
+}//idCheck() end
+
+
+function emailCheck(){
+	//아이디 중복확인
+	
+	//새창 만들기
+	//window.open("파일명", "창이름", "다양한 옵션")
+	window.open("emailCheckForm.jsp", "emailwin", "width=400, height=350");
+	
+	//새창이 출력되는 위치 지정
+	var sx=parseInt(screen.width);	//모니터 해상도 넓이
+	var sy=parseInt(screen.height);	//모니터 해상도 높이
+	var x=(sx/2)+50;
+	var y=(sy/2)-25;
+	
+	//화면이동
+	win.moveTo(x, y);
+	
+}//emailCheck() end
+
+
+function memberCheck(f){
+	//회원가입 유효성 검사
+	
+	//1) 아이디5~10글자 이내
+	var id=f.id.value;
+	var retest= /^[a-zA-Z]+[a-zA-Z0-9]{5,10}$/g;
+	
+	if(retest.test(id)==false){
+		alert("아이디에 한글이나 특수문자가 올 수 없습니다.");
+		return false;
+	}
+	
+	if(id.length==0){
+		alert("아이디 입력하세요");
+		return false;
+	}else if(id.length<5||id.length>10){
+		alert("아이디 5~10 글자 입력하세요");
+		return false;
+	}
+	
+	//2) 비번 5~10글자 이내
+	var passwd=f.passwd.value;
+	if(passwd.length==0){
+		alert("비밀번호 입력하세요");
+		return false;
+	}else if(passwd.length<5||passwd.length>16){
+		alert("비밀번호 5~16 글자 입력하세요");
+		return false;
+	}
+	
+	//3) 비번 특수문자 포함되어 있는지? 숫자, 영문자포함해야함
+	if(/(\w)\1\1\1/.test(passwd)){
+		alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+		return false;
+	}
+
+	if(passwd.search(id) > -1){
+		alert("비밀번호에 아이디가 포함되었습니다. 다시 입력해주세요.");
+		return false;
+	}
+	
+	var check = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{5,10}$/;
+	if(!check.test(passwd)){
+		alert("비밀번호는 영문, 숫자, 특수문자 사용해주세요");
+		return false;
+	}
+
+	//4) 비번과 비번확인이 서로 일치하는지?
+	var repasswd=f.repasswd.value;
+	if(repasswd.length==0){
+		alert("비밀번호 확인해주세요");
+		return false;
+	}else if(repasswd!=passwd){
+		alert("비밀번호가 일치하지 않습니다");
+		return false;
+	}
+	
+	//5) 이름 2~20글자 이내
+	var mname=f.mname.value;
+	if(mname.length==0){
+		alert("이름 입력하세요");
+		return false;
+	}else if(mname.length<2||mname.length>20){
+		alert("이름 2~20 글자 입력하세요");
+		return false;
+	}
+	if(retest.test(mname)==false){
+		alert("이름에는 한글이나 특수문자가 올 수 없습니다.");
+		return false;
+	}
+	
+	//6) 이메일에 @문자 있는지
+	var email=f.email.value;
+	var remail=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	if(email.length==0){
+		alert("이메일 입력하세요");
+		f.email.focus();
+		return false;
+	}else if(remail.test(email)==false){
+		alert("이메일 형식이 아닙니다");
+		f.email.focus();
+		return false;;
+	}//if end
+	
+	//7) 직업을 선택했는지?
+	var job = f.jop.value;
+	if(job=="0"){
+		alert("직업을 선택 하세요");
+		return false;
+	}
+
+	return true;	//유효성 검사를 통과했으므로 memberProc.jsp.로 전송
+
+}//memberCheck() end
 
 
 
