@@ -14,7 +14,7 @@
 	<td>
       <input type="text" name="id" id="id" size="15"  readonly>
       <input type="button" value="ID중복확인"  onclick="idCheck()">	
-      <br> *5~10 글자 입력(숫자,특수문자 사용 불가)*
+      <br> *5~10 글자 입력(한글,특수문자 사용 불가)*
 	</td>
 </tr>
 <tr>

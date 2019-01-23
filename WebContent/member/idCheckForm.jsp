@@ -19,11 +19,18 @@
 		function blankCheck(f){
 			var id=f.id.value;
 			id=id.trim();
-			if(id.length<5){
-				alert("아이디는 5글자 이상 입력해 주세요!");
-				f.id.focus();
+			var reid= /^[a-zA-Z0-9]{5,10}$/g;
+			if(id.length==0){
+				alert("아이디 입력하세요");
+				return false;
+			}else if(id.length<5||id.length>10){
+				alert("아이디 5~10 글자 입력하세요");
 				return false;
 			}//if end
+			if(reid.test(id)==false){
+				alert("아이디에 한글이나 특수문자가 올 수 없습니다.");
+				return false;
+			}
 			return true;
 		}//blankCheck() end
 		</script>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="./ssi.jsp" %>
+<%@ include file="../member/auth.jsp" %>
 <%@ include file="../header.jsp" %>
 
 		<h1> * 상세보기 * </h1>
@@ -61,8 +62,10 @@
 				<input type="hidden" name="nowPage" value="<%=nowPage%>">
 				<input type="button" value="목록" onclick="move(this.form, 'bbsList.jsp')">
 				<input type="button" value="답변" onclick="move(this.form, 'bbsReply.jsp')">
+			<% if(s_mlevel.equals("A1")){ %> <!-- A1인 등급인 애들만 수정 삭제 가능 -->
 				<input type="button" value="수정" onclick="move(this.form, 'bbsUpdate.jsp')">
 				<input type="button" value="삭제" onclick="move(this.form, 'bbsDel.jsp')">
+			<%}//if end %>
 			</form>
 			<script>
 				function move(f, file){

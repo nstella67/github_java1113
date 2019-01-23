@@ -168,12 +168,9 @@ function memberCheck(f){
 	
 	//1) 아이디5~10글자 이내
 	var id=f.id.value;
-	var retest= /^[a-zA-Z]+[a-zA-Z0-9]{5,10}$/g;
-	
-	if(retest.test(id)==false){
-		alert("아이디에 한글이나 특수문자가 올 수 없습니다.");
-		return false;
-	}
+	id=id.trim();
+	var reid= /[a-zA-Z0-9]{5,10}$/g;
+	reid=reid.trim();
 	
 	if(id.length==0){
 		alert("아이디 입력하세요");
@@ -182,9 +179,14 @@ function memberCheck(f){
 		alert("아이디 5~10 글자 입력하세요");
 		return false;
 	}
+	if(reid.test(id)==false){
+		alert("아이디에 한글이나 특수문자가 올 수 없습니다.");
+		return false;
+	}
 	
 	//2) 비번 5~10글자 이내
 	var passwd=f.passwd.value;
+	passwd=passwd.trim();
 	if(passwd.length==0){
 		alert("비밀번호 입력하세요");
 		return false;
@@ -204,7 +206,8 @@ function memberCheck(f){
 		return false;
 	}
 	
-	var check = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{5,10}$/;
+	var check = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{5,16}$/;
+	check=check.trim();
 	if(!check.test(passwd)){
 		alert("비밀번호는 영문, 숫자, 특수문자 사용해주세요");
 		return false;
@@ -212,6 +215,7 @@ function memberCheck(f){
 
 	//4) 비번과 비번확인이 서로 일치하는지?
 	var repasswd=f.repasswd.value;
+	repasswd=repasswd.trim();
 	if(repasswd.length==0){
 		alert("비밀번호 확인해주세요");
 		return false;
@@ -222,6 +226,9 @@ function memberCheck(f){
 	
 	//5) 이름 2~20글자 이내
 	var mname=f.mname.value;
+	mname=mname.trim();
+	var rename= /[a-zA-Z가-힣]{2,20}$/g;
+	rename=rename.trim();
 	if(mname.length==0){
 		alert("이름 입력하세요");
 		return false;
@@ -229,14 +236,16 @@ function memberCheck(f){
 		alert("이름 2~20 글자 입력하세요");
 		return false;
 	}
-	if(retest.test(mname)==false){
-		alert("이름에는 한글이나 특수문자가 올 수 없습니다.");
+	if(rename.test(mname)==false){
+		alert("이름에는 숫자나 특수문자가 올 수 없습니다.");
 		return false;
 	}
 	
 	//6) 이메일에 @문자 있는지
 	var email=f.email.value;
+	email=email.trim();
 	var remail=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	remail=remail.trim();
 	if(email.length==0){
 		alert("이메일 입력하세요");
 		f.email.focus();
@@ -249,6 +258,7 @@ function memberCheck(f){
 	
 	//7) 직업을 선택했는지?
 	var job = f.jop.value;
+	job=job.trim();
 	if(job=="0"){
 		alert("직업을 선택 하세요");
 		return false;
@@ -257,6 +267,26 @@ function memberCheck(f){
 	return true;	//유효성 검사를 통과했으므로 memberProc.jsp.로 전송
 
 }//memberCheck() end
+
+function loginCheck(f){
+	//로그인 유효성 검사
+	var id=f.id.value;
+	id=id.trim();
+	
+	if(id.length==0){
+		alert("아이디 입력하세요");
+		return false;
+	}
+	
+	var passwd=f.passwd.value;
+	passwd=passwd.trim();
+	if(passwd.length==0){
+		alert("비밀번호 입력하세요");
+		return false;
+	}
+	
+	return true;
+}//loginCheck() end
 
 
 

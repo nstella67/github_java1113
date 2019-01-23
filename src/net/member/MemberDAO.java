@@ -115,5 +115,37 @@ public class MemberDAO {
 		
 		return res;
 	}
+	
+	public String loginProc(MemberDTO dto) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuilder sql=null;
+		String mlevel=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT mlevel");
+			sql.append(" FROM member");
+			sql.append(" WHERE id=? AND passwd=?"); 
+			sql.append(" AND mlevel in('A1', 'B1', 'C1', 'D1')");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPasswd());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				mlevel=rs.getString("mlevel");
+			}
+		}catch(Exception e) {
+			System.out.println("로그인 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return mlevel;
+	}//login() end
 
 }//class end

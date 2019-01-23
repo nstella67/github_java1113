@@ -3,7 +3,7 @@
 
 <!-- 본문 시작 loginForm.jsp -->
 <h3>* 로 그 인 *</h3>
-<form>
+<form name="loginFrm" method="post" action="loginProc.jsp" onsubmit="return loginCheck(this)">
 	<table>
 	<tr>
 		<td>
