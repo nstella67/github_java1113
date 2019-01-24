@@ -9,7 +9,7 @@
 	<a href="bbsList.jsp">[글목록]</a>
 </p>
 
-<form method="get" action="bbsUpdateForm.jsp" onsubmit="return pwCheck(this)">
+<form method="get" action="bbsUpdateForm.jsp" onsubmit="return upPwCheck(this)">
 	<input type="hidden" name="bbsno" value="<%=request.getParameter("bbsno") %>">
 	<input type="hidden" name="col" value="<%=request.getParameter("col") %>">
 	<input type="hidden" name="word" value="<%=request.getParameter("word") %>">
