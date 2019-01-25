@@ -14,7 +14,7 @@ a:active  { text-decoration:underline; color:black;}
 </head>
 <body>
  <div align="center"> 
- <img src="../images/soldesk_logo.gif" width="200">
+ <img src="../images/tenor (9).gif" width="200">
  <br/>
  <table width="100%">
   <tr>

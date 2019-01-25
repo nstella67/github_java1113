@@ -72,7 +72,12 @@
 				</form>
 			</td>
 		</tr>
+	<%
+		}//if end
 		
+	%>
+		</table>
+				
 		<script>
 			function sort(f){
 				f.submit();
@@ -85,10 +90,5 @@
 				}
 			}//levelChange() end
 		</script>
-	<%
-		}//if end
-		
-	%>
-		</table>
 	</body>
 </html>

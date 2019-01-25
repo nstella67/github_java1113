@@ -193,7 +193,7 @@ public class MemberDAO {
 					dto.setId(rs.getString("id"));
 					dto.setPasswd(rs.getString("passwd"));
 					dto.setMname(rs.getString("mname"));
-					dto.setTel(rs.getString("tel"));
+					dto.setTel(Utility.checkNull(rs.getString("tel")));
 					dto.setEmail(rs.getString("email"));
 					dto.setMdate(rs.getString("mdate"));
 					dto.setMlevel(rs.getString("mlevel"));
@@ -236,6 +236,34 @@ public class MemberDAO {
 		}//try end
 		
 		return res;
-	}//
+	}//updateM() end
+	
+	
+	public int memDel(String id) {
+		int res=0;
+		
+		try {
+			con=dbopen.getConnection();
+			
+			sql = new StringBuilder();
+			sql.append(" DELETE FROM MEMBER");
+			sql.append(" WHERE id=?");
+				
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+
+			res=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("삭제실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		
+		return res;
+		
+	}
+	
+	
 	
 }//class end
