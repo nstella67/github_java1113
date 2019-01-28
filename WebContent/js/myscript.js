@@ -1,6 +1,5 @@
 /* myscript.js */
 
-
 function showtime(){
 			var today=new Date();
 
@@ -309,6 +308,46 @@ function loginCheck(f){
 }//loginCheck() end
 
 
+function pdsCheck(f){
+	// 포토갤러리 유효성 검사
+	//1) 이름
+	
+	//2) 제목
+	
+	//3) 비밀번호
+	
+	//4) 첨부파일
+	//문) 첨부한 파일의 확장명을 출력하시오
+	//		예) .png gif jpg 등.. (.없어도됨)		//indexOf/split
+	//indexOf
+	var filename=f.filename.value;
+	filename=filename.trim();
+	if(filename.length<5){
+		alert("첨부 파일 선택하세요");
+		return false;
+	}//if end
+	
+	//alert(filename);
+	//alert(filename.lastIndexOf(".")); 	//마지막.의 위치
+	//alert(filename.substr(filename.lastIndexOf(".")));
+	
+	var ext=filename.substr(filename.lastIndexOf(".")+1);
+	ext=ext.toLowerCase();	//전부 소문자
+	if(!(ext=="png" || ext=="gif" || ext=="jpg")){
+		alert("이미지 파일만 가능합니다");
+		return false;
+	}//if end
+	
+	return true;
+	
+	/* 나
+	var filename=f.filename.value;
+	var ep=filename.substring(filename.indexOf("."));
+	var ep=filename.substring(filename.lastIndexOf(".")+1);
+	alert("확장명 : "+ep);
+	*/
+	
+}//pdsCheck() end
 
 
 

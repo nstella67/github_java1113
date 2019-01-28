@@ -4,14 +4,16 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 
-<%@ page import="net.utility.*"%>
-<%@ page import="net.member.*"%>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
 
-<jsp:useBean id="dao" class="net.member.MemberDAO"></jsp:useBean>
-<jsp:useBean id="dto" class="net.member.MemberDTO"></jsp:useBean>
+<%@ page import="net.utility.*"%>
+<%@ page import="net.pds.*"%>
+
+<jsp:useBean id="dao" class="net.pds.PdsDAO"></jsp:useBean>
+<jsp:useBean id="dto" class="net.pds.PdsDTO"></jsp:useBean>
 
 <% request.setCharacterEncoding("UTF-8"); %>
-
 
 <%//--------------------------------------------------------------------------------
 	//검색 목록 페이지

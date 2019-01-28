@@ -40,7 +40,7 @@
         <li><a href="../bbs/bbsList.jsp">Board</a></li>
         <li><a href="#">Notice</a></li>
         <li><a href="../member/loginForm.jsp">Log in</a></li>
-        <li><a href="#">Photo</a></li>
+        <li><a href="../pds/pdsList.jsp">Photo</a></li>
         <li><a href="#">Mail</a></li>
         <li><a href="#">board(MVC)</a></li>
         <li><a href="#">log in(MVC)</a></li>

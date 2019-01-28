@@ -355,7 +355,6 @@ public class BbsDAO {
 		StringBuilder sql=null;
 		ArrayList<BbsDTO> list=null;
 		
-		
 		try {
 			con=dbopen.getConnection();
 			sql=new StringBuilder();
@@ -408,9 +407,6 @@ public class BbsDAO {
 	}//list() end
 	
 	public ArrayList<BbsDTO> list(String col, String word, int nowPage, int recordPerPage) {
-	    Connection con = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
 	    ArrayList<BbsDTO> list = null;
 
 	    // 10: 페이지당 출력할 레코드 갯수
