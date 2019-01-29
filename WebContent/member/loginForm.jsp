@@ -44,7 +44,7 @@ if(s_id.equals("guest")||s_passwd.equals("guest")||s_mlevel.equals("guest"))
 				&nbsp;&nbsp;
 				<a href = "agreement.jsp">회원가입</a>
 				&nbsp;&nbsp;
-				아이디/비번찾기
+				<a href = "Search_idpw.jsp">아이디/비번찾기
 			</p>
 		</td>
 	</tr>

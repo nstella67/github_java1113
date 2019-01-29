@@ -3,7 +3,7 @@
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 bbsUpdateForm.jsp -->
-<h3>* 글 수정 결과 *</h3>
+<h3>* 글 수정 *</h3>
 <% 
 	int bbsno=Integer.parseInt(request.getParameter("bbsno"));
 	String passwd=request.getParameter("passwd").trim();

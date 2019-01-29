@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="submit" value="확인">
+				<input type="submit" value="확인"></td>
 		</tr>
 </table>
 

@@ -2,8 +2,10 @@ package net.member;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.member.MemberDTO;
+import net.pds.PdsDTO;
 import net.utility.*;
 
 public class MemberDAO {
@@ -265,5 +267,32 @@ public class MemberDAO {
 	}
 	
 	
+	public String pwsearch(String mname, String email) {		//비번찾기
+		ResultSet rs=null;
+		String passwd=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT passwd, mname, email");
+			sql.append(" FROM member");
+			sql.append(" WHERE mname=? AND email=?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, mname);
+			pstmt.setString(2, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				passwd=rs.getString("passwd");
+			}
+		}catch(Exception e) {
+			System.out.println("조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return passwd;
+	}//idpwsearch() end/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 }//class end

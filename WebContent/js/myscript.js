@@ -85,7 +85,7 @@ function bbsCheck(f){	//답변형 게시판 유효성검사
 	
 }//Check() end
 
-function pwCheck(f){	//삭제 
+function pwCheck(f){	//비밀번호 유효성 검사
 	//비밀번호가 입력되었는지 확인
 	var passwd=f.passwd.value;
 	passwd=passwd.trim();
@@ -347,7 +347,28 @@ function pdsCheck(f){
 	alert("확장명 : "+ep);
 	*/
 	
-}//pdsCheck() end
+}//pdsCheck() end////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function namemailCheck(f){	//이름/메일유효성검사
+	var wname=f.wname.value;
+	passwd=passwd.trim();
+	if(passwd.length<4){
+		alert("비밀번호 4글자 이상 입력해주세요");
+		f.passwd.focus();
+		return false;
+	}//end
+	
+	var msg="진행된 내용은 복구되지 않습니다\n계속 진행 할까요?";
+	if(confirm(msg)){	//확인 true, 취소 false 반환
+		return true;
+	}else{
+		return false;
+	}
+	return true;
+	
+	
+}//namemailCheck() end/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
