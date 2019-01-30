@@ -35,17 +35,13 @@
 			}//if end
 		}//while end
 		
-		//여기까진 나옴
-		
 		//3) tb_pds 테이블에 저장하기----------------------------------
-		int pdsno=Integer.parseInt(request.getParameter("pdsno")); 
+		int pdsno=Integer.parseInt(mr.getParameter("pdsno")); 
 		String wname=mr.getParameter("wname").trim();
 		String subject=mr.getParameter("subject").trim();
 		String passwd=mr.getParameter("passwd").trim();
 		String ip     =request.getRemoteAddr();
-		
-		out.print(pdsno+" "+wname+" "+subject+" "+passwd);
-		
+
 		if(fileName==null){	//텍스트만 수정
 			dto.setPdsno(pdsno);
 			dto.setWname(wname);
@@ -54,15 +50,20 @@
 			dto.setIp(ip);
 			int res=dao.update1(dto);
 			if(res==0){
+				out.print("<script>");
 				out.print("글쓰기 실패<br/>");
 				out.print("<a href='javascript:history.back();'>[다시시도]</a>");
-				out.print("<script>");
+				out.print("</script>");
 			}else {
+				out.print("<script>");
 				out.print("  alert('글쓰기 성공');");
 				out.print("  window.location='pdsList.jsp?col="+col+"&word="+word+"';");
 				out.print("</script>");
 			}//if end
-		}else{	
+		}else{		//사진,텍스트 수정
+			if(file.exists()){				//파일 존재하는지?
+				file.delete();
+			}//if emd
 			dto.setPdsno(pdsno);
 			dto.setWname(wname);
 			dto.setSubject(subject);
@@ -70,29 +71,18 @@
 			dto.setFilename(fileName);
 			dto.setFilesize(filesize);
 			dto.setIp(ip);
-			if(wname==null & subject==null & passwd==null){	//사진만 수정
-				int res=dao.update2(dto);
-				if(res==0){
-					out.print("글쓰기 실패<br/>");
-					out.print("<a href='javascript:history.back();'>[다시시도]</a>");
-					out.print("<script>");
-				}else {
-					out.print("  alert('글쓰기 성공');");
-					out.print("  window.location='pdsList.jsp?col="+col+"&word="+word+"';");
-					out.print("</script>");
-				}//if end
-			}else{		//사진,텍스트 모두 수정
 				int res=dao.update3(dto);
 				if(res==0){
+					out.print("<script>");
 					out.print("글쓰기 실패<br/>");
 					out.print("<a href='javascript:history.back();'>[다시시도]</a>");
-					out.print("<script>");
+					out.print("</script>");
 				}else {
+					out.print("<script>");
 					out.print("  alert('글쓰기 성공');");
 					out.print("  window.location='pdsList.jsp?col="+col+"&word="+word+"';");
 					out.print("</script>");
 				}//if end
-			}
 		}
 	}catch(Exception e){
 		out.println(e);

@@ -85,7 +85,7 @@ public class MemberDAO {
 			
 			sql = new StringBuilder();
 			sql.append(" insert into member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
-			sql.append(" values(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate)");
+			sql.append(" values(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', now())");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getId());
@@ -264,12 +264,53 @@ public class MemberDAO {
 		
 		return res;
 		
-	}
+	}//memDel() end////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public String idsearch(String mname, String email) {
+		ResultSet rs=null;
+		String id=null;
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT id");
+			sql.append(" FROM member");
+			sql.append(" WHERE mname=? AND email=?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, mname);
+			pstmt.setString(2, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				id=rs.getString("id");
+			}else {
+				System.out.println("   dkdk");
+			}
+		}catch(Exception e) {
+			System.out.println("조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return id;
+	}//idsearch() end//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	public String pwsearch(String mname, String email) {		//비번찾기
 		ResultSet rs=null;
 		String passwd=null;
+		
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		int idx = 0; 
+		StringBuffer sb = new StringBuffer();
+		//System.out.println("charSet.length :::: "+charSet.length);
+		for (int i = 0; i < 8; i++) {
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+			//System.out.println("idx :::: "+idx);
+			sb.append(charSet[idx]);
+		}
 		
 		try {
 			con=dbopen.getConnection();
@@ -292,7 +333,66 @@ public class MemberDAO {
 			dbclose.close(con, pstmt, rs);
 		}//try end
 		
-		return passwd;
+		return sb.toString();
 	}//idpwsearch() end/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int newpwSend(String passwd, String email) {
+		int res=0;
+		try {
+			con=dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" UPDATE member ");
+			sql.append(" SET passwd=?");
+			sql.append(" WHERE email=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, passwd);
+			pstmt.setString(2, email);
+			res=pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("임시비밀번호실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		return res;
+	}//newpwSend() end/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public MemberDTO memUpdate(MemberDTO dto) {	//회원정보 수정
+		ResultSet rs=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT id, passwd, mname, email, tel, zipcode, address1, address2, job ");
+			sql.append(" FROM member");
+			sql.append(" WHERE id=? AND passwd=?"); 
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPasswd());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				dto=new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setPasswd(rs.getString("passwd"));
+				dto.setMname(rs.getString("mname"));
+				dto.setEmail(rs.getString("email"));
+				dto.setTel(rs.getString("tel"));
+				dto.setZipcode(rs.getString("zipcode"));
+				dto.setAddress1(rs.getString("address1"));
+				dto.setAddress2(rs.getString("address2"));
+				dto.setJob(rs.getString("job"));
+			}
+		}catch(Exception e) {
+			System.out.println("로그인 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return dto;
+	}//memUpdate() end///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	
 }//class end

@@ -56,8 +56,8 @@ if(s_id.equals("guest")||s_passwd.equals("guest")||s_mlevel.equals("guest"))
 	out.println("<strong>"+s_id+"</strong>님");
 	out.println("<a href='logout.jsp'>[로그아웃]</a>");
 	out.println("<br><br>");
-	out.println("[회원 정보 수정]");
-	out.println("[회원 탈퇴]");
+	out.println("<a href='memUpdate.jsp'>[회원 정보 수정]</a>");
+	out.println("<a href='memDelete.jsp'>[회원 탈퇴]</a>");
 }//if end
 %>
 

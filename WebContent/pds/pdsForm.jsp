@@ -38,7 +38,7 @@
         <input type="submit" value="전송">               
         <input type="reset"  value="취소">               
         <input type="button" value="목록"
-               onclick="javascript:location.href='./pdsIns.jsp'">
+               onclick="javascript:location.href='./pdsList.jsp'">
      </td>
   </tr>
   </table>

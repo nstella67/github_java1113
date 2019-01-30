@@ -118,10 +118,9 @@ public class PdsDAO {
 		int res=0;
 		try {
 			con=dbopen.getConnection();	//DB연결
-			
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO  tb_pds(pdsno, wname, subject, passwd, filename, filesize, regdate, ip)");
-			sql.append(" VALUES((SELECT nvl(max(pdsno),0)+1 FROM tb_pds), ?, ?, ?, ?, ?, SYSDATE, ?)");
+			sql.append(" INSERT INTO  tb_pds( pdsno, wname, subject, passwd, filename, filesize, regdate, ip)");
+			sql.append(" VALUES((SELECT nvl(max(pdsno),0)+1, ?, ?, ?, ?, ?, now(), ?)");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getWname());
 			pstmt.setString(2, dto.getSubject());
@@ -284,7 +283,7 @@ public class PdsDAO {
 	}//updat1() end/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
-	public int update2(PdsDTO dto) {
+	public int update2(PdsDTO dto) {	//필요X
 		int res=0;
 		try {
 			con=dbopen.getConnection();
@@ -333,7 +332,8 @@ public class PdsDAO {
 		return res;
 	}//update2() end/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-
+	
+	
 
 }//class end
 

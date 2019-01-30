@@ -2,7 +2,7 @@
 <%@ include file="ssi.jsp" %>
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 bbsIns.jsp -->
+<!-- 본문 시작 memberProc.jsp -->
 <% 
 	//1) 사용자가 입력한 정보를 변수에 담기
 	String id  =request.getParameter("id").trim();

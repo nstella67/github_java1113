@@ -6,7 +6,6 @@
 	<h3>* 아이디/비번 찾기 *</h3>
 <!-- 아이디찾기---------------------------------------------------------------------------------------- -->
 <form method="get" action="Search_idProc.jsp">
-	<input type="hidden" name="email" value="<%=request.getParameter("email") %>">
 <table>
 	<tr> <th colspan="2">*아이디 찾기* </th></tr>
 	<tr>
@@ -32,7 +31,6 @@
 
 <!-- 비번 찾기--------------------------------------------------------------------------------------- -->
 <form method="get" action="Search_pwProc.jsp">
-	<input type="hidden" name="id" value="<%=request.getParameter("id") %>">
 	<table>
 		<tr> <th colspan="2">*비밀번호 찾기* </th></tr>
 		<tr>
