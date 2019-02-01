@@ -4,8 +4,8 @@
 <%@ include file="auth.jsp" %>
 
 <!-- 본문 시작 bbsDel.jsp-->
-<h3>* 회원정보수정 *</h3>
-<form method="get" action="memUpdateForm.jsp" onsubmit="return upPwCheck(this)">
+<h3>* 회원탈퇴 *</h3>
+<form method="get" action="memDeleteProc.jsp" onsubmit="return pwCheck(this)">
 <%
 	String id=(String)session.getAttribute("s_id");
 %>
@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="submit" value="확인"></td>
+				<input type="submit" value="탈퇴"></td>
 		</tr>
 </table>
 

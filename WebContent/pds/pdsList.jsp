@@ -17,7 +17,7 @@
 	
 	<%
 		int totalRecord=dao.count(col, word);
-		int recordPerPage=10;
+		int recordPerPage=5;
 		
 		ArrayList<PdsDTO> list=dao.list(col, word, nowPage, recordPerPage);
 		if(list==null){
@@ -34,15 +34,11 @@
 				<td><%=dto.getPdsno()%></td>
 				<td><a href="pdsRead.jsp?pdsno=<%=dto.getPdsno() %>"><%=dto.getSubject()%></a>
 					<%
-					// 오늘 작성한 글제목 뒤에 new이미지 출력
-					// 작성일에서 "년월일"만 자르기 → 예)2019-01-16
-					// 2019-01-16
 					String regdt=dto.getRegdate().substring(0, 10);
 					if(regdt.equals(today)){
 						out.print("<img src='../images/yellowstar.png' width='15'>");
 					}//if end
 					
-					//조회수가 10 이상이면 hot 이미지 출력
 					if(dto.getReadcnt()>=10){
 						out.println("<img src='../images/tenor (8).gif' width='30'>");
 					}

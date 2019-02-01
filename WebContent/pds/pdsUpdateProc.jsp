@@ -61,9 +61,6 @@
 				out.print("</script>");
 			}//if end
 		}else{		//사진,텍스트 수정
-			if(file.exists()){				//파일 존재하는지?
-				file.delete();
-			}//if emd
 			dto.setPdsno(pdsno);
 			dto.setWname(wname);
 			dto.setSubject(subject);
@@ -71,7 +68,7 @@
 			dto.setFilename(fileName);
 			dto.setFilesize(filesize);
 			dto.setIp(ip);
-				int res=dao.update3(dto);
+				int res=dao.update3(dto, saveDirectory);
 				if(res==0){
 					out.print("<script>");
 					out.print("글쓰기 실패<br/>");

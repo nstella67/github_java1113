@@ -25,7 +25,7 @@
 			<th>등급</th>
 		</tr>
 	<%
-		String col=Utility.checkNull(request.getParameter("col"));
+		col=Utility.checkNull(request.getParameter("col"));
 		ArrayList<MemberDTO> list=dao.list(col);
 		if(list==null){
 			out.println("<tr><td colspan='7'>자료없음</td>");			

@@ -83,7 +83,7 @@ function bbsCheck(f){	//답변형 게시판 유효성검사
 	
 	return true;	//onsubmit 이벤트에서 서버로 전송
 	
-}//Check() end
+}//bbsCheck() end
 
 function pwCheck(f){	//비밀번호 유효성 검사
 	//비밀번호가 입력되었는지 확인
@@ -123,12 +123,12 @@ function move(f, file){
 	f.submit();
 }//pwCheck() end
 
-
+/*
 function move(f, file){
 	f.action=file;
 	f.submit();
 }//pwCheck() end
-
+*/
 
 function searchCheck(f){
 	var word=f.word.value;
@@ -370,5 +370,44 @@ function namemailCheck(f){	//이름/메일유효성검사
 	
 }//namemailCheck() end/////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//NOTICE
+function ntcCheck(f){	//답변형 게시판 유효성검사
+/*if(s_mlevel.equals("A1")){ %> <!-- A1인 등급인 애들만 수정 삭제 가능 -->
+	<input type="button" value="수정" onclick="move(this.form, 'bbsUpdate.jsp')">
+	<input type="button" value="삭제" onclick="move(this.form, 'bbsDel.jsp')">
+<%}//if end %>
+*/	// 제목, 내용글자, 비번, 글자 갯수 확인	
+	//2) 제목
+	var subject=f.subject.value;
+	subject=subject.trim();
+	if(subject.length==0){
+		alert("내용 입력해주세요");
+		f.subject.focus();
+		return false;
+	}//end
+	
+	//3) 내용
+	var content=f.content.value;
+	content=content.trim();
+	if(content.length==0){
+		alert("내용 입력해주세요");
+		f.content.focus();
+		return false;
+	}//end
+	
+	//4) 비밀번호 4글자이상
+	var passwd=f.passwd.value;
+	passwd=passwd.trim();
+	if(passwd.length<4){
+		alert("비밀번호 4글자 이상 입력해주세요");
+		f.passwd.focus();
+		return false;
+	}//end
+	
+	//5) 글자 갯수
+	
+	
+	return true;	//onsubmit 이벤트에서 서버로 전송
+	
+}//bbsCheck() end
 

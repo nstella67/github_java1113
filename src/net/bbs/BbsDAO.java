@@ -585,7 +585,95 @@ public class BbsDAO {
 	}//comment() end
 	
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//관리자
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	
+	public synchronized ArrayList<BbsDTO> bslist(String col) {
+		ArrayList<BbsDTO> bslist=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT bbsno, wname, subject, readcnt, indent, grpno, regdt");
+			sql.append(" FROM tb_bbs");
+			
+			if(col.equals("bbsno")||col.equals("")) {
+				sql.append(" ORDER BY bbsno DESC");
+			}else if(col.equals("subject")) {
+				sql.append(" ORDER BY subject ASC");
+			}else if(col.equals("regdt")) {
+				sql.append(" ORDER BY regdt DESC");
+			}//if end
+			
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				bslist=new ArrayList<>();		//전체저장
+				do {
+					BbsDTO dto=new BbsDTO();	//한줄저장
+					dto.setBbsno(rs.getInt("bbsno"));
+					dto.setWname(rs.getString("wname"));
+					dto.setSubject(rs.getString("subject"));
+					dto.setReadcnt(rs.getInt("readcnt"));
+					dto.setIndent(rs.getInt("indent"));
+					dto.setGrpno(rs.getInt("grpno"));
+					dto.setRegdt(rs.getString("regdt"));
+					bslist.add(dto);
+				}while(rs.next());
+			}//if end
+			
+		}catch(Exception e) {
+			System.out.println("목록실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return bslist;
+		
+	}//list() end
+	
+	
+	public int recordCount() {	//게시글 카운트
+		int cnt=0;
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT COUNT(bbsno) cnt");
+			sql.append(" FROM tb_bbs");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}else {
+				
+			}
+		}catch(Exception e) {
+			System.out.println("글 조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return cnt;
+	}
+	
+	
+	public int bsDel(String checkRow) {
+		int res=0;
+		try{
+			String drt ="";
+			drt+=" DELETE FROM ";
+		}catch(Exception e) {
+			System.out.println("삭제 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return res;
+	}//bsDel() end///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	private DBOpen getConnection() {
 		// TODO Auto-generated method stub
 		return null;

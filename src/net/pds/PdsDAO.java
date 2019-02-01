@@ -61,23 +61,24 @@ public class PdsDAO {
 	    	con=dbopen.getConnection();
 			sql=new StringBuilder();
 			word = word.trim(); // 문자열 좌우 공백 제거
-/*			if (word.length() == 0){ // 검색을 안하는 경우
+			if (word.length() == 0){ // 검색을 안하는 경우
 		        sql.append(" SELECT pdsno, wname, subject, readcnt, regdate, filename, rnum ");
 		        sql.append(" FROM (");
 		        sql.append("   SELECT pdsno, subject, wname, readcnt, regdate, filename, rownum as rnum");
-				sql.append("	FROM(");*/
+				sql.append("	FROM(");
 				sql.append("		SELECT pdsno, subject, wname, readcnt, regdate, filename");
 		        sql.append(" 		FROM tb_pds ");
 		        sql.append(" 		ORDER BY pdsno DESC ");
-/*		        sql.append("       )");
+		        sql.append("       )");
 		        sql.append("  )     ");
-		        sql.append(" WHERE rnum >= "+startRow+" AND rnum <= "+endRow +" AND cnt!=0");
+		        sql.append(" WHERE rnum >= "+startRow+" AND rnum <= "+endRow);
+		        pstmt = con.prepareStatement(sql.toString());
 			}else{ // 검색을 하는 경우
-		        sql.append(" SELECT pdsno, wname, subject, readcnt, regdate, rnum");
+		        sql.append(" SELECT pdsno, wname, subject, readcnt, regdate, filename, rnum");
 		        sql.append(" FROM(");
-		        sql.append("      SELECT pdsno, wname, subject, readcnt, regdate, rownum as rnum");
+		        sql.append("      SELECT pdsno, wname, subject, readcnt, regdate, filename, rownum as rnum");
 		        sql.append("      FROM (");
-		        sql.append("           SELECT pdsno, wname, subject, readcnt, regdate");
+		        sql.append("           SELECT pdsno, wname, subject, readcnt, regdate, filename");
 		        sql.append("           FROM tb_pds ");
 		        //검색
 		        if(word.length()>=1){
@@ -87,10 +88,10 @@ public class PdsDAO {
 		        sql.append("           ORDER BY pdsno DESC");
 		        sql.append("      )");
 		        sql.append(" )     ");
-		        sql.append(" WHERE rnum >= "+startRow+" AND rnum <= "+endRow);*/
-	        pstmt = con.prepareStatement(sql.toString());
-/*			}//if end
-*/	      rs=pstmt.executeQuery();
+		        sql.append(" WHERE rnum >= "+startRow+" AND rnum <= "+endRow);
+		        pstmt = con.prepareStatement(sql.toString());
+			}//if end
+	      rs=pstmt.executeQuery();
 	      if(rs.next()) {
 	        list=new ArrayList<PdsDTO>();
 	        do {
@@ -307,9 +308,14 @@ public class PdsDAO {
 	
 	
 
-	public int update3(PdsDTO dto) {
+	public int update3(PdsDTO dto,String saveDirectory) {
 		int res=0;
 		try {
+			String filename="";
+			PdsDTO oldDTO = read(dto.getPdsno());
+			if(oldDTO!=null) {
+				filename = oldDTO.getFilename();	//파일명 지워지기 전에 변수에 담기
+			}
 			con=dbopen.getConnection();
 			sql = new StringBuilder();
 			sql.append(" UPDATE tb_pds");
@@ -324,6 +330,10 @@ public class PdsDAO {
 			pstmt.setString(6, dto.getIp());
 			pstmt.setInt(7, dto.getPdsno());
 			res=pstmt.executeUpdate();
+			if(res==1) {
+				//테이블에서 레코드가 성공적으로 삭제가 되면 첨부된 파일도 삭제
+				Utility.deleteFile(saveDirectory, filename);
+			}
 		}catch(Exception e) {
 			System.out.println("수정실패 : "+e);
 		}finally {

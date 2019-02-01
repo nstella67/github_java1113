@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.member.MemberDTO;
-import net.pds.PdsDTO;
 import net.utility.*;
 
 public class MemberDAO {
@@ -16,6 +15,7 @@ public class MemberDAO {
 	private Connection con=null;
 	private PreparedStatement pstmt=null;
 	private StringBuilder sql=null;
+	private ResultSet rs=null;
 	
 	public MemberDAO() {
 		dbopen=new DBOpen();
@@ -85,7 +85,7 @@ public class MemberDAO {
 			
 			sql = new StringBuilder();
 			sql.append(" insert into member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
-			sql.append(" values(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', now())");
+			sql.append(" values(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate)");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getId());
@@ -138,8 +138,8 @@ public class MemberDAO {
 		return mlevel;
 	}//login() end
 
-	//회원관리
-	public int recordCount() {
+	//회원관리	//관리자
+	public int recordCount() {	//회원수
 		ResultSet rs=null;
 		int cnt=0;
 		
@@ -167,8 +167,6 @@ public class MemberDAO {
 	}
 	
 	public ArrayList<MemberDTO> list(String col) {
-		ResultSet rs=null;
-		StringBuilder sql=null;
 		ArrayList<MemberDTO> list=null;
 		
 		try {
@@ -214,7 +212,7 @@ public class MemberDAO {
 	}//list() end
 	
 	
-	public int updateM(String id, String mlevel) {
+	public int updateM(String id, String mlevel) {	//등급변경	//관리자
 		int res=0;
 		
 		try {
@@ -358,7 +356,7 @@ public class MemberDAO {
 	}//newpwSend() end/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	public MemberDTO memUpdate(MemberDTO dto) {	//회원정보 수정
+	public MemberDTO memUpdate(MemberDTO dto) {	//회원정보 수정폼
 		ResultSet rs=null;
 		
 		try {
@@ -386,13 +384,41 @@ public class MemberDAO {
 				dto.setJob(rs.getString("job"));
 			}
 		}catch(Exception e) {
-			System.out.println("로그인 실패 : "+e);
+			System.out.println("회원정보 수정 실패 : "+e);
 		}finally {
 			dbclose.close(con, pstmt, rs);
 		}//try end
 		
 		return dto;
 	}//memUpdate() end///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int memDelete(MemberDTO dto) {	//회원탈퇴 → 등급 F1으로 변경
+		int res=0;
+		
+		try {
+			con=dbopen.getConnection();
+			
+			sql = new StringBuilder();
+			sql.append(" UPDATE MEMBER"); 
+			sql.append(" SET mlevel='F1'"); 
+			sql.append(" WHERE id=?");
+				
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getId());
+
+			res=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("회원 탈퇴 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		
+		return res;
+		
+		
+	}//memDel() end///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 }//class end

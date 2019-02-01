@@ -16,7 +16,7 @@ a:active  { text-decoration:underline; color:black;}
  <div align="center"> 
  <img src="../images/tenor (9).gif" width="200">
  <br/>
- <table width="100%">
+ <table width="80%">
   <tr>
     <td align=center><strong>관 / 리 / 자 / 메 / 뉴</strong></td>
   </tr>
@@ -30,7 +30,7 @@ a:active  { text-decoration:underline; color:black;}
     <td height=1 bgcolor=#808080></td>
   </tr>
   <tr>
-    <td><a href="" target="sub">■ 게시판관리</a></td>
+    <td><a href="bs/bs_fra.jsp" target="sub">■ 게시판관리</a></td>
   </tr>
   <tr>
     <td height=1 bgcolor=#808080></td>
