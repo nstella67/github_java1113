@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
-<%@ include file="../../member/ssi.jsp" %>
+<%@ include file="../../bbs/ssi.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>

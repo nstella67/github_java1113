@@ -13,5 +13,13 @@
   	<session-timeout>600</session-timeout>
   </session-config>
   
-  
+  <!-- MyController 서블릿 등록 -->
+   <servlet>
+  	<servlet-name>ControllerAction</servlet-name>
+  	<servlet-class>net.controller.MyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControllerAction</servlet-name>
+  	<url-pattern>*.do</url-pattern>		<!-- .do라는 명령어시 무조건 찍고 가라 -->
+  </servlet-mapping>
 </web-app>

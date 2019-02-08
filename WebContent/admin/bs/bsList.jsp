@@ -8,22 +8,23 @@
 		<title>bs/bsList.jsp</title>
 	</head>
 	
-	<body>
+	<body>		
 		<h3>* 게시판 목록 *</h3>
 		전체 글 수 : <strong><%=dao.recordCount() %></strong>
 		<hr>
+	<form>
 		<table>
-<thead>
-		<tr>
-			<th><input type="checkbox" name="checkAll" id="checkAll" onclick="cAll(this);"/></th>
-			<th>글번호</th>
-			<th>작성자</th>
-			<th>제목</th>
-			<th>조회수</th>
-			<th>그룹번호</th>
-			<th>등록일</th>
-		</tr>
-</thead>
+		<thead>
+			<tr>
+				<th><input type="checkbox" name="checkAll" id="checkAll" onclick="cAll(this);"/></th>
+				<th>글번호</th>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>조회수</th>
+				<th>그룹번호</th>
+				<th>등록일</th>
+			</tr>
+		</thead>
 	<%
 		col=Utility.checkNull(request.getParameter("col"));
 		ArrayList<BbsDTO> bslist=dao.bslist(col);
@@ -33,21 +34,25 @@
 			for(int idx=0; idx<bslist.size(); idx++){
 				dto=bslist.get(idx);
 	%>
-<tbody>
-		<tr>
-			<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getBbsno() %>" /></td>
-			<td><%=dto.getBbsno()%></td>
-			<td><%=dto.getWname()%></td>
-			<td><%=dto.getSubject()%></td>
-			<td><%=dto.getReadcnt() %></td>
-			<td><%=dto.getGrpno() %></td>
-			<td><%=dto.getRegdt() %></td>
-		</tr>
-</tbody>
+		<tbody>
+			<tr>
+				<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getBbsno() %>" /></td>
+				<td><%=dto.getBbsno()%></td>
+				<td><%=dto.getWname()%></td>
+				<td><%=dto.getSubject()%></td>
+				<td><%=dto.getReadcnt() %></td>
+				<td><%=dto.getGrpno() %></td>
+				<td><%=dto.getRegdt() %></td>
+			</tr>	
+		</tbody>
 	<%
 			}
 	%>
-		<!-- 정렬 -->
+			<tr>
+				<td><input type="button" value="선택한 글 삭제" onclick="bsDelProc.jsp"></td>
+			</tr>
+<%-- 		<!-- 정렬 -->
+		<table>
 		<tr>
 			<td colspan="6">
 				<form action="bsList.jsp">
@@ -59,15 +64,14 @@
 				</form>
 			</td>
 		</tr>
+		</table> --%>
 	<%
 		}//if end
-		
 	%>
 		</table>
-		
-	<form>
-		<input type="button" value="선택한 글 삭제" onclick="bsDelProc.jsp">
 	</form>
+
+
 				
 		<script>
 			function sort(f){

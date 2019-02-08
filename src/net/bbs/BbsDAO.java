@@ -299,7 +299,6 @@ public class BbsDAO {
 
 			res=pstmt.executeUpdate();
 			
-			
 		}catch(Exception e) {
 			System.out.println("수정실패 : "+e);
 		}finally {
@@ -656,14 +655,25 @@ public class BbsDAO {
 			dbclose.close(con, pstmt, rs);
 		}//try end
 		return cnt;
-	}
+	}//recordCount() end///////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	public int bsDel(String checkRow) {
+	public int bsDel(String checkRow[]) {
 		int res=0;
 		try{
-			String drt ="";
-			drt+=" DELETE FROM ";
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			String str="";
+			str+="DELETE FROM tb_bbs WHERE bbsno IN ("+checkRow[0];
+			if(checkRow.length>1) {
+				for(int i=1; i<checkRow.length; i++ ) {
+					str+=","+checkRow[i];
+				}//for end
+			}//if end
+			str+=")";
+			sql.append(str);
+			pstmt=con.prepareStatement(sql.toString());
+			res=pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("삭제 실패 : "+e);
 		}finally {
