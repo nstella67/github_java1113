@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -42,8 +44,8 @@
         <li><a href="../member/loginForm.jsp">Log in</a></li>
         <li><a href="../pds/pdsList.jsp">Photo</a></li>
         <li><a href="../mail/mailForm.jsp">Mail</a></li>
-        <li><a href="#">board(MVC)</a></li>
-        <li><a href="#">log in(MVC)</a></li>
+        <li><a href="./bbs2/bbslist.do">board(MVC)</a></li>
+        <li><a href="./member2/loginForm.do">log in(MVC)</a></li>
       </ul>
     </div>
   </div>

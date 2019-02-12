@@ -17,9 +17,23 @@
    <servlet>
   	<servlet-name>ControllerAction</servlet-name>
   	<servlet-class>net.controller.MyController</servlet-class>
+  	<init-param>
+  		<param-name>propertyConfig</param-name>
+  		<param-value>D:/java1113/workspace/myweb/WebContent/WEB-INF/command.properties</param-value>
+  	</init-param>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerAction</servlet-name>
   	<url-pattern>*.do</url-pattern>		<!-- .do라는 명령어시 무조건 찍고 가라 -->
   </servlet-mapping>
+  
+  <!-- 한글 필터 등록 -->
+  <filter>
+  	<filter-name>encode</filter-name>
+  	<filter-class>net.utility.EncodeFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encode</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
