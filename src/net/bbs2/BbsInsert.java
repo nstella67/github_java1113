@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.action.CommandAction;
+import net.utility.Utility;
 
 public class BbsInsert implements CommandAction {
 	@Override
@@ -30,7 +31,15 @@ public class BbsInsert implements CommandAction {
 		
 		//System.out.println("dao빠져나왔나요");
 		
-		return "insertProc.jsp";
+		//1)
+		//return "insertProc.jsp";
+		
+		//2) View 페이지 재구성
+		String root=Utility.getRoot();
+		String msg="<meta http-equiv='refresh' content='0; url="+root+"/bbs2/bbslist.do'>";
+		req.setAttribute("msg", msg);
+		
+		return "bbsResult.jsp";
 		
 	}//requestPro() end
 	

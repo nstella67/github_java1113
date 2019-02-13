@@ -3,9 +3,9 @@
 <%@ include file="/view/color.jspf" %>
 
 <!-- 본문 시작 bbsDeleteform.jsp-->
-<strong>* 글삭제 *</strong>
+<strong>* 비밀번호 확인 *</strong>
 <br><br>
-<form method="post" name="writeform" action="./bbsdelete.do">
+<form method="post" name="writeform" action="${page }.do">
 <input type="hidden" name="num" value="${num }">
 <input type="hidden" name="pageNum" value="${pageNum  }">
 <table border="1">

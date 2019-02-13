@@ -7,7 +7,7 @@
 <strong>* 글/목/록 *</strong>
 <br><br>
 
-<table width="500">
+<table>
 <tr>
 	<td>전체 글:${count }</td>
 	<td align="center"><a href="./bbsform.do">글쓰기</a></td>
@@ -15,7 +15,7 @@
 </table>
 
 <c:if test="${count==0 }">
-	<table with="500">
+	<table>
 	<tr>
 		<td>게시판에 글 없음</td>
 	</tr>

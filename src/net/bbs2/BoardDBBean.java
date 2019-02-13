@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import net.bbs.BbsDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
 
@@ -83,8 +84,7 @@ public class BoardDBBean {
 			sql.delete(0, sql.length());
 			sql.append(" INSERT INTO board(num, writer, email, subject, passwd, reg_date, ref, re_step, re_level, content, ip)");
 			sql.append(" VALUES ((SELECT nvl(max(num),0)+1 FROM board), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			System.out.println(sql.toString());
-			
+			//System.out.println(sql.toString());
 			
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setString(1, article.getWriter());
@@ -290,8 +290,70 @@ public class BoardDBBean {
 			dbclose.close(con, pstmt);
 		}
 		return res;
-	}//delete() end
+	}//delete() end///////////////////////////////////////////////////////////////////////////////
+	
+	
+	public BoardDataBean updateform(BoardDataBean article) {		//updateform 수정폼 가져오기
+		try {
+			con=dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" SELECT num, writer, email, subject, content, passwd, ip");
+			sql.append(" FROM board");
+			sql.append(" WHERE passwd=? AND num=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, article.getPasswd());
+			pstmt.setInt(2, article.getNum());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				//System.out.println("rs.next 있음");
+				article=new BoardDataBean();
+				article.setNum(rs.getInt("num"));
+				article.setWriter(rs.getString("writer"));
+				article.setEmail(rs.getString("email"));
+				article.setSubject(rs.getString("subject"));
+				article.setContent(rs.getString("content"));
+				article.setPasswd(rs.getString("passwd"));
+				article.setIp(rs.getString("ip"));
+			}else {
+				//System.out.println("rs.next 없음");
+				article=null;
+			}
+		}catch(Exception e) {
+			System.out.println("수정폼 불러오기 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return article;
+	}//updateform() end/////////////////////////////////////////////////////////////////////////////////
 
+	
+	public int update(BoardDataBean article) {
+		int res=0;
+		try {
+			con=dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" UPDATE board");
+			sql.append(" SET writer=?, subject=?, email=?, content=?, passwd=?, ip=?");
+			sql.append(" WHERE num=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, article.getWriter());
+			pstmt.setString(2, article.getSubject());
+			pstmt.setString(3, article.getEmail());
+			pstmt.setString(4, article.getContent());
+			pstmt.setString(5, article.getPasswd());
+			pstmt.setString(6, article.getIp());
+			pstmt.setInt(7, article.getNum());
+			res=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		
+		return res;
+	}//update() end///////////////////////////////////////////////////////////////////////////////////////
+	
 }//class end
 
 
