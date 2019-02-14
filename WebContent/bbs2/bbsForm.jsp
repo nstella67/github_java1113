@@ -11,7 +11,7 @@
 <input type="hidden" name="re_step"  value="${re_step }">
 <input type="hidden" name="re_level" value="${re_level }">
 
-<table width="450" border="1">
+<table>
 <tr>
   <td align="right" colspan=2 bgcolor="${value_c }">
       <a href="/myweb/bbs2/bbslist.do">글목록</a></td>

@@ -14,4 +14,21 @@ public class EncodeFilter implements Filter {
 		arg2.doFilter(arg0, arg1);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#destroy()
+	 */
+	@Override
+	public void destroy() {}
+
+	/* (non-Javadoc)
+	 * @see javax.servlet.Filter#init(javax.servlet.FilterConfig)
+	 */
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+
+	
+	
+	
+	
+	
 }//class end

@@ -138,7 +138,7 @@ public class MemberDAO {
 		return mlevel;
 	}//login() end
 
-	//회원관리	//관리자
+	//회원관리	//관리자	///////////////////////////////////////////////////////////////////////////////////
 	public int recordCount() {	//회원수
 		ResultSet rs=null;
 		int cnt=0;

@@ -6,14 +6,8 @@
 <!-- 본문 시작 bbsList.jsp-->
 <strong>* 글/목/록 *</strong>
 <br><br>
-
+<a href="./bbsform.do">글쓰기</a>
 <table>
-<tr>
-	<td>전체 글:${count }</td>
-	<td align="center"><a href="./bbsform.do">글쓰기</a></td>
-</tr>
-</table>
-
 <c:if test="${count==0 }">
 	<table>
 	<tr>
@@ -23,7 +17,6 @@
 </c:if>
 
 <c:if test="${count>0 }">
-	<table border="1">
 	<tr>
 		<td width="30">번호</td>
 		<td>제목</td>
@@ -67,10 +60,13 @@
 			<td>${article.ip }</td>
 		</tr>
 	</c:forEach>
-	</table>
 </c:if>
-
+		<tr>
+			<td colspan="6">전체 글:${count }</td>
+		</tr>
 <!-- 페이지 리스트 -->
+<tr>
+<td colspan="6">
 <c:if test="${count>0 }">
 	<c:set var="pageCount" value="${totalPage }"></c:set>
 	<c:set var="startPage" value="${startPage }"></c:set>
@@ -92,7 +88,9 @@
 <c:if test="${endPage<pageCount }">
 	<a href="./bbslist.go?pageNum=${startPage+11 }">[다음]</a>
 </c:if>
-
+</td>
+</tr>
+</table>
 
 <!-- 본문 끝 -->			
 <%@ include file="../footer.jsp" %>

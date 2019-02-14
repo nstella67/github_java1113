@@ -189,7 +189,7 @@ public class BoardDBBean {
 			sql.append(" UPDATE board SET readcount=readcount+1 WHERE num=?");
 			pstmt=con.prepareStatement(sql.toString());
 			pstmt.setInt(1, num);
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 			//System.out.println(sql.toString());
 			
 			sql.delete(0, sql.length());

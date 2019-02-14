@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/style.css?ver=2">
+  <link rel="stylesheet" href="../css/style.css?ver5sffh6dd">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="../js/jquery-3.3.1.min.js"></script>
   <script src="../js/bootstrap.min.js"></script>
@@ -44,8 +44,8 @@
         <li><a href="../member/loginForm.jsp">Log in</a></li>
         <li><a href="../pds/pdsList.jsp">Photo</a></li>
         <li><a href="../mail/mailForm.jsp">Mail</a></li>
-        <li><a href="./bbs2/bbslist.do">board(MVC)</a></li>
-        <li><a href="./member2/loginForm.do">log in(MVC)</a></li>
+        <li><a href="../bbs2/bbslist.do">board(MVC)</a></li>
+        <li><a href="../member2/loginForm.do">log in(MVC)</a></li>
       </ul>
     </div>
   </div>
@@ -61,8 +61,8 @@
 </div>
 
 <!-- Container 시작 -->
-<div class="bg-3 text-center">
-  <div class="row">
-    <div class="col-sm-12">
+<div class="bg-3 text-center"></div>
+  <div class="row"></div>
+    <div class="col-sm-12"></div>
       
   

@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="../member/auth.jsp" %>
+<%@ page import="java.sql.Timestamp" %>
 <%@ include file="../header.jsp" %>
+<%@ include file="/view/color.jspf" %>
 
 <!-- 본문 시작 loginForm.jsp -->
-<h3>* 로 그 인 *</h3>
+<p>* 로/그/인 *</p>
+
+<c:if test="${empty sessionScope.memid }">
 <%
-if(s_id.equals("guest")||s_passwd.equals("guest")||s_mlevel.equals("guest"))
-{	//로그인을 하지 않은 경우
-	
 	//쿠키값 가져오기-------------------------------------------------------
 	Cookie[] cookies=request.getCookies();
 	String c_id="";
@@ -20,9 +20,8 @@ if(s_id.equals("guest")||s_passwd.equals("guest")||s_mlevel.equals("guest"))
 		}//for end
 	}//if end
 	//------------------------------------------------------------------------
-
 %>
-<form name="loginFrm" method="post" action="loginProc.jsp" onsubmit="return loginCheck(this)">
+<form name="loginfrm" method="post" action="loginPro.do" onsubmit="return loginCheck(this)">
 	<table>
 	<tr>
 		<td>
@@ -50,18 +49,26 @@ if(s_id.equals("guest")||s_passwd.equals("guest")||s_mlevel.equals("guest"))
 	</tr>
 	</table>
 </form>
-<%
-}else{
-	//로그인 성공했다면
-	out.println("<strong>"+s_id+"</strong>님");
-	out.println("<a href='logout.jsp'>[로그아웃]</a>");
-	out.println("<br><br>");
-	out.println("<a href='memUpdate.jsp'>[회원 정보 수정]</a>");
-	out.println("<a href='memDelete.jsp'>[회원 탈퇴]</a>");
-}//if end
-%>
+</c:if>
 
-
+<c:if test="${sessionScope.memid!=null }">
+	<table>
+	<tr>
+		<td rowspan="3">${sessionScope.memid } 님이 방문하셨습니다.
+			<form method="post" action="logout.do">
+				<input type="submit" value="로그아웃">
+			</form>
+			<form method="post" action="modifyForm.do">
+				<input type="hidden" name="id" value="${sessionScope.memid }">
+				<input type="submit" value="회원정보변경">
+			</form>
+			<form method="post" action="withdrawForm.do">
+				<input type="submit" value="회원탈퇴">
+			</form>
+		</td>
+	</tr>
+	</table>
+</c:if>
 <!-- 본문 끝 -->
 
 <%@ include file="../footer.jsp" %>

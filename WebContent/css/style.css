@@ -6,7 +6,7 @@
 	padding:0px; 0px; 0px; 10px;
     font: 15px Montserrat, sans-serif;
     line-height: 1.8;
-    color: #f5f6f7;
+    color: #004080;
   }
   
   table {
@@ -14,15 +14,16 @@
 	color:#003399;
 	text-align:center;
 	margin:auto;
+	margin-bottom:30px;
 	border-width: 1px;
 	border-collapse:collapse;	/* 테이블 테두리 선 표시 옵션
 											separate : 기본값
 											collapse : 선 하나로 */
-	width: 70%
+	width: 80%
 }
 
 td, th{
-	font-size:80%;
+	font-size:70%;
 	margin:auto;
 	background-color:#fdf2d2;
 	border: 1px solid #ffccff;
@@ -33,6 +34,7 @@ td, th{
 /* writefrm class style */
 
 .writefrm{
+	background-color: #fff7ee;
 	width:50%;
 	margin:0 auto;
 	margin-top:30px;
