@@ -411,3 +411,17 @@ function ntcCheck(f){	//답변형 게시판 유효성검사
 	
 }//bbsCheck() end
 
+
+function mem_passCheck(f){	//회원정보수정/탈퇴시 비밀번호 확인
+	//비밀번호가 입력되었는지 확인
+	var passwd=f.passwd.value;
+	passwd=passwd.trim();
+	if(passwd.length<5){
+		alert("비밀번호 5글자 이상 입력해주세요");
+		f.passwd.focus();
+		return false;
+	}//end
+	
+	return true;
+}//pwCheck() end
+

@@ -58,11 +58,11 @@
 			<form method="post" action="logout.do">
 				<input type="submit" value="로그아웃">
 			</form>
-			<form method="post" action="modifyForm.do">
+			<form method="post" action="memCheck.do?page=modifyForm">
 				<input type="hidden" name="id" value="${sessionScope.memid }">
 				<input type="submit" value="회원정보변경">
 			</form>
-			<form method="post" action="withdrawForm.do">
+			<form method="post" action="memCheck.do?page=withdraw">
 				<input type="submit" value="회원탈퇴">
 			</form>
 		</td>

@@ -5,53 +5,44 @@
 
 <!-- 본문 시작 memUpdateForm.jsp -->
 <h3>* 회원정보 수정 *</h3>
-<%
-	String id=(String)session.getAttribute("s_id");
-	String passwd=request.getParameter("passwd").trim();
-
-	dto.setId(id);
-	dto.setPasswd(passwd);
-
-	dto=dao.memUpdateForm(dto);
-
-	if(dto==null){
-		out.print("<script>");
-		out.print("  alert('비밀번호가 일치하지 않습니다');");
-		out.print("	history.back();");
-		out.print("</script>");
-	}else {
-//3) 수정폼에 출력
-%>
-<form name="regForm" method="post" action="memUpdateProc.jsp" onsubmit="return memberCheck(this)">
+<c:choose>
+	<c:when test="${article==null }">
+		<script>
+			alert("비밀번호가 일치하지 않습니다");
+			history.back();
+		</script>
+	</c:when>
+	<c:otherwise>
+<form name="regForm" method="post" action="modifyPro.do" onsubmit="return memberCheck(this)">
 <span style="color:red; font-weight: bold">* 필수입력</span>
 <br>
 <table border="1" class="writefrm">
 <tr>
 	<th style="color:#bf0000;">* 아이디</th>
 	<td>
-      <input type="text" name="id" id="id" size="15" readonly value="<%=dto.getId()%>">
+      <input type="text" name="id" id="id" size="15" readonly value="${article.id }">
 	</td>
 </tr>
 <tr>
 	<th style="color:#bf0000;">* 비밀번호</th>
-	<td><input type="password" name="passwd" id="passwd" size="15" required value="<%=dto.getPasswd()%>">
+	<td><input type="password" name="passwd" id="passwd" size="15" required value="${article.passwd }">
 		&nbsp;&nbsp;*영문, 숫자, 특수문자 포함 5~16 글자 입력*
 	</td>
 </tr>
 <tr>
 	<th style="color:#bf0000;">* 비밀번호 확인</th>
-	<td><input type="password" name="repasswd" id="repasswd" size="15" required value="<%=dto.getPasswd()%>"></td>
+	<td><input type="password" name="repasswd" id="repasswd" size="15" required value="${article.passwd }"></td>
 </tr>
 <tr>
 	<th style="color:#bf0000;">* 이름</th>
-	<td><input type="text" name="mname" id="mname" size="15" required value="<%=dto.getMname()%>">
+	<td><input type="text" name="mname" id="mname" size="15" required value="${article.mname }">
 		&nbsp;&nbsp;*2~20 글자 입력(숫자,특수문자 사용 불가)*
 	</td>
 </tr>
 <tr>
 	<th style="color:#bf0000;">* 이메일</th>
 	<td>
-      <input type="text" name="email" id="email" size="30" value="<%=dto.getEmail()%>">
+      <input type="text" name="email" id="email" size="30" value="${article.email }">
       <!-- <input type="text" name="email" id="email" size="30" readonly> -->
       <!-- <select name="email"  id="email">
           <option value="0" selected>이메일</option>
@@ -70,24 +61,24 @@
 <tr>
 	<th>우편번호</th>
 	<td>
-      <input type="text" name="zipcode" id="zipcode" size="7"  readonly value="<%=dto.getZipcode()%>">
+      <input type="text" name="zipcode" id="zipcode" size="7"  readonly value="${article.zipcode }">
       <input type="button" value="주소찾기"  onclick="DaumPostcode()">	
 	</td>
 </tr>
 <tr>  
   <th>주소</th>
-  <td><input type="text" name="address1" id="address1" size="45" readonly value="<%=dto.getAddress1()%>"></td>
+  <td><input type="text" name="address1" id="address1" size="45" readonly value="${article.address1 }"></td>
 </tr>
 <tr>  
   <th>나머지주소</th>
-  <td><input type="text" name="address2" id="address2" size="45" value="<%=dto.getAddress2()%>"></td>
+  <td><input type="text" name="address2" id="address2" size="45" value="${article.address2 }"></td>
 </tr>
 <tr>  
   <th>직업</th>
-  <td><select name="job"  id="job" value="<%=dto.getJob()%>">
+  <td><select name="job"  id="job" value="${article.job }">
           <option value="0">선택하세요.</option>
           <option value="A01">회사원</option>
-          <option value="A02">전산관련직</option>
+          <option value="A02" selected>전산관련직</option>
           <option value="A03">학생</option>
           <option value="A04">주부</option>
           <option value="A05">기타</option>
@@ -171,11 +162,8 @@
 <!-- ----- DAUM 우편번호 API 종료----- -->
 
 </form>
-<%		
-		//4) 
-
-	}
-%>
+	</c:otherwise>
+</c:choose>
 <!-- 본문 끝 -->
 
 <%@ include file="../footer.jsp" %>

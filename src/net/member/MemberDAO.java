@@ -356,7 +356,7 @@ public class MemberDAO {
 	}//newpwSend() end/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	public MemberDTO memUpdate(MemberDTO dto) {	//회원정보 수정폼
+	public MemberDTO memUpdateForm(MemberDTO dto) {	//회원정보 수정폼
 		ResultSet rs=null;
 		
 		try {
@@ -384,13 +384,48 @@ public class MemberDAO {
 				dto.setJob(rs.getString("job"));
 			}
 		}catch(Exception e) {
-			System.out.println("회원정보 수정 실패 : "+e);
+			System.out.println("회원정보 불러오기 실패 : "+e);
 		}finally {
 			dbclose.close(con, pstmt, rs);
 		}//try end
 		
 		return dto;
 	}//memUpdate() end///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int memUpdate(MemberDTO dto) {
+		int res=0;
+		
+		try {
+			con=dbopen.getConnection();
+			
+			sql = new StringBuilder();
+			sql.append(" UPDATE MEMBER"); 
+			sql.append(" SET passwd=?, mname=?, email=?, tel=?, zipcode=?, address1=?, address2=?, job=?"); 
+			sql.append(" WHERE id=?");
+				
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getPasswd());
+			pstmt.setString(2, dto.getMname());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getTel());
+			pstmt.setString(5, dto.getZipcode());
+			pstmt.setString(6, dto.getAddress1());
+			pstmt.setString(7, dto.getAddress2());
+			pstmt.setString(8, dto.getJob());
+			pstmt.setString(9, dto.getId());
+
+			res=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("수정실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		
+		return res;
+	}
+	
 	
 	
 	public int memDelete(MemberDTO dto) {	//회원탈퇴 → 등급 F1으로 변경

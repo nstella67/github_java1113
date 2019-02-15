@@ -3,7 +3,7 @@
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 memDeleteProc.jsp -->
-<h3>* 글 삭제 결과 *</h3>
+<h3>* 탈퇴 결과 *</h3>
 <% 
 	String id=(String)session.getAttribute("s_id");
 	String passwd=request.getParameter("passwd").trim();
