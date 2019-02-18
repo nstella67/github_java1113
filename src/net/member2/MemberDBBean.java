@@ -228,5 +228,131 @@ public class MemberDBBean {
 		return res;
 	}//withdraw() end
 	
+	
+	public MemberDataBean searchId(MemberDataBean article) {	//아이디찾기
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT id, passwd, mname");
+			sql.append(" FROM member");
+			sql.append(" WHERE mname=? AND email=?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, article.getMname());
+			pstmt.setString(2, article.getEmail());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				article=new MemberDataBean();
+				article.setId(rs.getString("id"));
+				article.setPasswd(rs.getString("passwd"));
+				article.setMname(rs.getString("mname"));
+				//System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getEmail());
+			}else {
+				System.out.println("없");
+				article=null;
+			}
+		}catch(Exception e) {
+			System.out.println("아이디 조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return article;
+	}
+	
+	
+	public MemberDataBean searchPw(MemberDataBean article) {	//비번찾기
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT id, passwd, email");
+			sql.append(" FROM member");
+			sql.append(" WHERE mname=? AND email=? AND id=?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, article.getMname());
+			pstmt.setString(2, article.getEmail());
+			pstmt.setString(3, article.getId());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				article=new MemberDataBean();
+				article.setId(rs.getString("id"));
+				article.setPasswd(rs.getString("passwd"));
+				article.setEmail(rs.getString("email"));
+				article.setMname(rs.getString("mname"));
+				//System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getEmail());
+			}else {
+				System.out.println("없");
+				article=null;
+			}
+		}catch(Exception e) {
+			System.out.println("비번 조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return article;
+	}
+	
+	
+	public String pwsearch(MemberDataBean article) {		//임시비밀번호 설정
+		String passwd=null;
+		
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		int idx = 0; 
+		StringBuffer sb = new StringBuffer();
+		//System.out.println("charSet.length :::: "+charSet.length);
+		for (int i = 0; i < 8; i++) {
+			idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+			//System.out.println("idx :::: "+idx);
+			sb.append(charSet[idx]);
+		}
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			
+			sql.append(" SELECT passwd, mname, email");
+			sql.append(" FROM member");
+			sql.append(" WHERE email=?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, article.getEmail());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				passwd=rs.getString("passwd");
+			}
+		}catch(Exception e) {
+			System.out.println("임시비밀번호 설정 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return sb.toString();
+	}//idpwsearch() end/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int newPw(String passwd, String email) {	//임시비밀번호 발송
+		int res=0;
+		try {
+			con=dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" UPDATE member ");
+			sql.append(" SET passwd=?");
+			sql.append(" WHERE email=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, passwd);
+			pstmt.setString(2, email);
+			res=pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("임시비밀번호 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt);
+		}//try end
+		return res;
+	}//newpwSend() end/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }//class end

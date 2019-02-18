@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.Timestamp" %>
 <%@ include file="../header.jsp" %>
-<%@ include file="/view/color.jspf" %>
 
 <!-- 본문 시작 loginForm.jsp -->
 <p>* 로/그/인 *</p>
@@ -43,7 +42,7 @@
 				&nbsp;&nbsp;
 				<a href = "agreement.jsp">회원가입</a>
 				&nbsp;&nbsp;
-				<a href = "Search_idpw.jsp">아이디/비번찾기</a>
+				<a href = "searchForm.do">아이디/비번찾기</a>
 			</p>
 		</td>
 	</tr>
