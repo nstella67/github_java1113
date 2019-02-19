@@ -16,7 +16,7 @@
 			<table>
 			<tr>
 				<th align="center">임시 비밀번호 발급 이메일</th>
-				<td><input type="text" name="Oemail" size="50" value="${article.email }"></td>
+				<td><input type="text" name="Nemail" size="50" value="${article.email }"></td>
 				<td><input type="submit" value="확인"></td>
 			</tr>
 			</table>
