@@ -15,7 +15,7 @@
 	<c:otherwise>
 		<p>"${Nemail }"로 임시비밀번호를 전송하였습니다</p>
 	</c:otherwise>
-</c:choose>
+</c:choose>   
 <!-- 본문 끝 -->
 
 <%@ include file="../footer.jsp" %>

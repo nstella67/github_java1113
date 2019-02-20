@@ -344,6 +344,110 @@ public class PdsDAO {
 	
 	
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//관리자
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	
+	public synchronized ArrayList<PdsDTO> pdslist(String col) {
+		ArrayList<PdsDTO> pdslist=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT pdsno, subject, wname, readcnt, regdate, filename");
+			sql.append(" FROM tb_pds");
+			sql.append(" ORDER BY pdsno DESC ");
+/*			
+			if(col.equals("pdsno")||col.equals("")) {
+				sql.append(" ORDER BY pdsno DESC");
+			}else if(col.equals("subject")) {
+				sql.append(" ORDER BY subject ASC");
+			}else if(col.equals("regdt")) {
+				sql.append(" ORDER BY regdt DESC");
+			}//if end
+			*/
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				pdslist=new ArrayList<>();		//전체저장
+				do {
+					PdsDTO dto=new PdsDTO();	//한줄저장
+					dto.setPdsno(rs.getInt("pdsno"));
+					dto.setWname(rs.getString("wname"));
+					dto.setSubject(rs.getString("subject"));
+					dto.setReadcnt(rs.getInt("readcnt"));
+					dto.setRegdate(rs.getString("regdate"));
+					pdslist.add(dto);
+				}while(rs.next());
+			}//if end
+			
+		}catch(Exception e) {
+			System.out.println("목록실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return pdslist;
+		
+	}//list() end
+	
+	
+	public int recordCount() {	//게시글 카운트
+		int cnt=0;
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT COUNT(pdsno) cnt");
+			sql.append(" FROM tb_pds");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}else {
+				
+			}
+		}catch(Exception e) {
+			System.out.println("글 조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return cnt;
+	}//recordCount() end///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	public int pdsDel(String checkRow[]) {
+		int res=0;
+		try{
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			String str="";
+			str+="DELETE FROM tb_pds WHERE pdsno IN ("+checkRow[0];
+			if(checkRow.length>1) {
+				for(int i=1; i<checkRow.length; i++ ) {
+					str+=","+checkRow[i];
+				}//for end
+			}//if end
+			str+=")";
+			sql.append(str);
+			pstmt=con.prepareStatement(sql.toString());
+			res=pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("삭제 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return res;
+	}//bsDel() end///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	private DBOpen getConnection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }//class end
 

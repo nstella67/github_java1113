@@ -1,52 +1,52 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
-<%@ include file="../../bbs/ssi.jsp" %>
+<%@ include file="../../pds/ssi.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
-		<title>bs/bsList.jsp</title>
+		<title>pds/pdsList.jsp</title>
 	</head>
 	
 	<body>		
 	<%
 	col=Utility.checkNull(request.getParameter("col"));
-	ArrayList<BbsDTO> bslist=dao.bslist(col);
-	if(bslist==null){
+	ArrayList<PdsDTO> pdslist=dao.pdslist(col);
+	if(pdslist==null){
 		out.println("<tr><td colspan='7'>자료없음</td>");	
 	}else{
 	%>
 	
-				<h3>* 게시판 목록 *</h3>
+	<h3>* 포토 목록 *</h3>
 		전체 글 수 : <strong><%=dao.recordCount() %></strong>
-		<hr>
-	<form method="get" action="bsDelProc.jsp">
+	<hr>
+	<form method="get" action="pdsDelProc.jsp">
 		<table>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="checkAll" id="checkAll" onclick="cAll(this);"/></th>
 				<th>글번호</th>
-				<th>작성자</th>
 				<th>제목</th>
+				<th>사진</th>
+				<th>작성자</th>
 				<th>조회수</th>
-				<th>그룹번호</th>
 				<th>등록일</th>
 			</tr>
 		</thead>
 	<%
-		for(int idx=0; idx<bslist.size(); idx++){
-			dto=bslist.get(idx);
+		for(int idx=0; idx<pdslist.size(); idx++){
+			dto=pdslist.get(idx);
 	%>
 
 		<tbody>
 			<tr>
-				<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getBbsno() %>" /></td>
-				<td><%=dto.getBbsno()%></td>
-				<td><%=dto.getWname()%></td>
+				<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getPdsno() %>" /></td>
+				<td><%=dto.getPdsno()%></td>
 				<td><%=dto.getSubject()%></td>
+				<td><%=dto.getFilename()%></td>
+				<td><%=dto.getWname()%></td>
 				<td><%=dto.getReadcnt() %></td>
-				<td><%=dto.getGrpno() %></td>
-				<td><%=dto.getRegdt() %></td>
+				<td><%=dto.getRegdate() %></td>
 			</tr>	
 		</tbody>
 	<%
@@ -55,7 +55,7 @@
 			<tr>
 				<td>
 				<input type="submit" value="선택한 글 삭제">
-				<input type="hidden" name="checkRow" value="<%=dto.getBbsno() %>" >
+				<input type="hidden" name="checkRow" value="<%=dto.getPdsno() %>" >
 				</td>
 			</tr>
 <%-- 		<!-- 정렬 -->

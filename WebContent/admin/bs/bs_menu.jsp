@@ -16,7 +16,7 @@
     <input type="button" value="게시판 관리" onclick="move('bsList.jsp')">
   </td>
   <td>    
-     <input type="button" value="포토갤러리 관리" onclick="move('ptDel.jsp')">
+     <input type="button" value="포토갤러리 관리" onclick="move('pdsList.jsp')">
   </td>
 </tr>
 </table>
