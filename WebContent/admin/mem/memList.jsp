@@ -1,14 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
 <%@ include file="../../member/ssi.jsp" %>
-<!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<meta charset="UTF-8">
-		<title>mem/memList.jsp</title>
-	</head>
-	
-	<body>
+<%@ include file="../../Admin_header.jsp" %>	
 		<h3>* 회원 목록 *</h3>
 		전체 회원수 : <strong><%=dao.recordCount() %></strong>
 		<hr>
@@ -21,7 +14,6 @@
 			<th>이메일</th>
 			<th>가입일</th>
 			<th>등급</th>
-			<th></th>
 		</tr>
 	<%
 		col=Utility.checkNull(request.getParameter("col"));
@@ -68,5 +60,4 @@
 				f.submit();
 			}//sort() end
 		</script>
-	</body>
-</html>
+<%@ include file="../../Admin_footer.jsp" %>

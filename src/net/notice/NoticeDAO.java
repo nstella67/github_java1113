@@ -254,4 +254,122 @@ public class NoticeDAO {
 		return res;
 	}//delete() end//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//관리자//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	public synchronized ArrayList<NoticeDTO> notlist(String col) {
+		ArrayList<NoticeDTO> notlist=null;
+		
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT noticeno, subject, Nid, regdt");
+			sql.append(" FROM tb_notice");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				notlist=new ArrayList<>();		//전체저장
+				do {
+					NoticeDTO dto=new NoticeDTO();	//한줄저장
+					dto.setNoticeno(rs.getInt("noticeno"));
+					dto.setSubject(rs.getString("subject"));
+					dto.setNid(rs.getString("nid"));
+					dto.setRegdt(rs.getString("regdt"));
+					notlist.add(dto);
+				}while(rs.next());
+			}//if end
+			
+		}catch(Exception e) {
+			System.out.println("목록실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		
+		return notlist;
+		
+	}//list() end
+	
+	
+	public int recordCount() {	//게시글 카운트
+		int cnt=0;
+		try {
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" SELECT COUNT(noticeno) cnt");
+			sql.append(" FROM tb_notice");
+			
+			pstmt=con.prepareStatement(sql.toString());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				cnt=rs.getInt("cnt");
+			}else {
+				
+			}
+		}catch(Exception e) {
+			System.out.println("글 조회 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return cnt;
+	}//recordCount() end///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int notDel(String checkRow[]) {
+		int res=0;
+		try{
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			String str="";
+			str+="DELETE FROM tb_notice WHERE noticeno IN ("+checkRow[0];
+			if(checkRow.length>1) {
+				for(int i=1; i<checkRow.length; i++ ) {
+					str+=","+checkRow[i];
+				}//for end
+			}//if end
+			str+=")";
+			sql.append(str);
+			pstmt=con.prepareStatement(sql.toString());
+			res=pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("삭제 실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+		return res;
+	}//bsDel() end///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public NoticeDTO notUpdateForm(NoticeDTO dto) {
+		try {
+			con=dbopen.getConnection();
+			sql = new StringBuilder();
+			sql.append(" SELECT noticeno, nid, subject, content, passwd");
+			sql.append(" FROM tb_notice");
+			sql.append(" WHERE noticeno=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, dto.getNoticeno());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				dto=new NoticeDTO();
+				dto.setNoticeno(rs.getInt("noticeno"));
+				dto.setNid(rs.getString("nid"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setPasswd(rs.getString("passwd"));
+			}else {
+				dto=null;
+			}
+		}catch(Exception e) {
+			System.out.println("실패 : "+e);
+		}finally {
+			dbclose.close(con, pstmt, rs);
+		}//try end
+			
+		return dto;
+	
+	}//ntcUpdateform() end/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }//class end

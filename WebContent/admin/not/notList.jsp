@@ -1,54 +1,55 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
-<%@ include file="../../pds/ssi.jsp" %>
+<%@ include file="../../notice/ssi.jsp" %>
 <%@ include file="../../Admin_header.jsp" %>	
 	<%
 	col=Utility.checkNull(request.getParameter("col"));
-	ArrayList<PdsDTO> pdslist=dao.pdslist(col);
-	if(pdslist==null){
-		out.println("<tr><td colspan='7'>자료없음</td>");	
+	ArrayList<NoticeDTO> notlist=dao.notlist(col);
+	if(notlist==null){
+		out.println("<tr><td colspan='6'>자료없음</td>");	
 	}else{
 	%>
 	
-	<h3>* 포토 목록 *</h3>
+	<h3>* 게시판 목록 *</h3>
 		전체 글 수 : <strong><%=dao.recordCount() %></strong>
-	<hr>
-	<form method="get" action="pdsDelProc.jsp">
+		<hr>
+	<form method="get" action="notDelProc.jsp">
 		<table>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="checkAll" id="checkAll" onclick="cAll(this);"/></th>
 				<th>글번호</th>
 				<th>제목</th>
-				<th>사진</th>
 				<th>작성자</th>
-				<th>조회수</th>
 				<th>등록일</th>
+				<th>수정</th>
 			</tr>
 		</thead>
 	<%
-		for(int idx=0; idx<pdslist.size(); idx++){
-			dto=pdslist.get(idx);
+		for(int idx=0; idx<notlist.size(); idx++){
+			dto=notlist.get(idx);
 	%>
 
 		<tbody>
 			<tr>
-				<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getPdsno() %>" /></td>
-				<td><%=dto.getPdsno()%></td>
+				<td class="center"><input type="checkbox" name="checkRow" value="<%=dto.getNoticeno() %>" /></td>
+				<td><%=dto.getNoticeno()%></td>
 				<td><%=dto.getSubject()%></td>
-				<td><%=dto.getFilename()%></td>
-				<td><%=dto.getWname()%></td>
-				<td><%=dto.getReadcnt() %></td>
-				<td><%=dto.getRegdate() %></td>
+				<td><%=dto.getNid()%></td>
+				<td><%=dto.getRegdt() %></td>
+				<td>
+					<input type="button" value="수정" onclick="move(this.form, 'notUpdateForm.jsp')">
+					<input type="hidden" name="noticeno" value="<%=dto.getNoticeno() %>">
+				</td>
 			</tr>	
 		</tbody>
 	<%
 			}
 	%>
 			<tr>
-				<td colspan="7" align="left">
+				<td colspan="6" align="left">
 				<input type="submit" value="선택한 글 삭제">
-				<input type="hidden" name="checkRow" value="<%=dto.getPdsno() %>" >
+				<input type="hidden" name="checkRow" value="<%=dto.getNoticeno() %>" >
 				</td>
 			</tr>
 <%-- 		<!-- 정렬 -->

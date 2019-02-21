@@ -1,14 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
 <%@ include file="../../bbs/ssi.jsp" %>
-<!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<meta charset="UTF-8">
-		<title>bs/bsList.jsp</title>
-	</head>
-	
-	<body>		
+<%@ include file="../../Admin_header.jsp" %>	
 	<%
 	col=Utility.checkNull(request.getParameter("col"));
 	ArrayList<BbsDTO> bslist=dao.bslist(col);
@@ -53,9 +46,9 @@
 			}
 	%>
 			<tr>
-				<td>
-				<input type="submit" value="선택한 글 삭제">
-				<input type="hidden" name="checkRow" value="<%=dto.getBbsno() %>" >
+				<td colspan="7" align="left">
+					<input type="submit" value="선택한 글 삭제">
+					<input type="hidden" name="checkRow" value="<%=dto.getBbsno() %>" >
 				</td>
 			</tr>
 <%-- 		<!-- 정렬 -->
@@ -127,5 +120,4 @@
 				  }
 				}// */
 		</script>
-	</body>
-</html>
+<%@ include file="../../Admin_footer.jsp" %>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ include file="adminAuth.jsp" %>
 <% 
 	//adminLogout.jsp
 	session.removeAttribute("s_admin_id");

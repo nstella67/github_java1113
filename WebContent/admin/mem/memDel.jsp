@@ -1,14 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../adminAuth.jsp" %>
 <%@ include file="../../member/ssi.jsp" %>
-<!DOCTYPE html>
-<html lang="ko">
-	<head>
-		<meta charset="UTF-8">
-		<title>mem/memDel.jsp</title>
-	</head>
-	
-	<body>
+<%@ include file="../../Admin_header.jsp" %>	
 		<h3>* 회원 삭제 *</h3>
 		<h5 style="color: red">* 아이디 선택하거나 검색해서 삭제 가능 *</h5>
 		전체 회원수 : <strong><%=dao.recordCount() %></strong>
@@ -75,5 +68,4 @@
 				}
 			}//mDel() end
 		</script>
-	</body>
-</html>
+<%@ include file="../../Admin_footer.jsp" %>

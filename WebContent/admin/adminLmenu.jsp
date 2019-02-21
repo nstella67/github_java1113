@@ -42,7 +42,7 @@ a:active  { text-decoration:underline; color:black;}
     <td height=1 bgcolor=#808080></td>
   </tr>
   <tr>
-    <td><a href="" target="sub">■ 공지사항관리</a></td>
+    <td><a href="not/not_fra.jsp" target="sub">■ 공지사항관리</a></td>
   </tr>
   <tr>
     <td height=1 bgcolor=#808080></td>
