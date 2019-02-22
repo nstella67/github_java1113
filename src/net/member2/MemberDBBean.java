@@ -85,7 +85,7 @@ public class MemberDBBean {
 			sql=new StringBuilder();
 			
 			sql.append(" SELECT *");
-			sql.append(" FROM member");
+			sql.append(" FROM MEMBER");
 			sql.append(" WHERE id=? AND passwd=?"); 
 			sql.append(" AND mlevel in('A1', 'B1', 'C1', 'D1')");
 			
@@ -111,7 +111,7 @@ public class MemberDBBean {
 			con=dbopen.getConnection();	//DB연결
 			
 			sql = new StringBuilder();
-			sql.append(" INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
+			sql.append(" INSERT INTO MEMBER(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate) ");
 			sql.append(" VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate)");
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -141,7 +141,7 @@ public class MemberDBBean {
 			con=dbopen.getConnection();
 			sql=new StringBuilder();
 			sql.append(" SELECT id, passwd, mname, email, tel, zipcode, address1, address2, job ");
-			sql.append(" FROM member");
+			sql.append(" FROM MEMBER");
 			sql.append(" WHERE id=? AND passwd=?"); 
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, article.getId());
@@ -234,22 +234,21 @@ public class MemberDBBean {
 			con=dbopen.getConnection();
 			sql=new StringBuilder();
 			
-			sql.append(" SELECT id, passwd, mname");
-			sql.append(" FROM member");
+			sql.append(" SELECT id, mname");
+			sql.append(" FROM MEMBER");
 			sql.append(" WHERE mname=? AND email=?");
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, article.getMname());
 			pstmt.setString(2, article.getEmail());
 			rs=pstmt.executeQuery();
+			
 			if(rs.next()) {
 				article=new MemberDataBean();
 				article.setId(rs.getString("id"));
-				article.setPasswd(rs.getString("passwd"));
 				article.setMname(rs.getString("mname"));
-				//System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getEmail());
+				//System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getMname());
 			}else {
-				System.out.println("없");
 				article=null;
 			}
 		}catch(Exception e) {
@@ -268,7 +267,7 @@ public class MemberDBBean {
 			sql=new StringBuilder();
 			
 			sql.append(" SELECT id, passwd, email");
-			sql.append(" FROM member");
+			sql.append(" FROM MEMBER");
 			sql.append(" WHERE mname=? AND email=? AND id=?");
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -282,7 +281,7 @@ public class MemberDBBean {
 				article.setPasswd(rs.getString("passwd"));
 				article.setEmail(rs.getString("email"));
 				article.setMname(rs.getString("mname"));
-				//System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getEmail());
+				System.out.println(article.getId()+"  "+article.getPasswd()+"  "+article.getEmail());
 			}else {
 				System.out.println("없");
 				article=null;
@@ -316,7 +315,7 @@ public class MemberDBBean {
 			sql=new StringBuilder();
 			
 			sql.append(" SELECT passwd, mname, email");
-			sql.append(" FROM member");
+			sql.append(" FROM MEMBER");
 			sql.append(" WHERE email=?");
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -340,7 +339,7 @@ public class MemberDBBean {
 		try {
 			con=dbopen.getConnection();
 			sql = new StringBuilder();
-			sql.append(" UPDATE member ");
+			sql.append(" UPDATE MEMBER");
 			sql.append(" SET passwd=?");
 			sql.append(" WHERE email=?");
 			pstmt = con.prepareStatement(sql.toString());

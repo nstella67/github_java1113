@@ -13,25 +13,21 @@ public class Search implements CommandAction {
 		String mname=req.getParameter("mname");
 		String email=req.getParameter("email");
 		
-		//System.out.println(page+"  "+mname+" "+email);
-		
 		MemberDataBean article=new MemberDataBean();
 		article.setMname(mname);
 		article.setEmail(email);
 		MemberDBBean dao=new MemberDBBean();
-		if(page=="searchId") {
+		if(page.equals("searchId")) {
 			article=dao.searchId(article);
 		}
-
-		if(page=="searchPw") {
+		if(page.equals("searchPw")) {
 			String id=req.getParameter("id");
 			article.setId(id);
 			article=dao.searchPw(article);
 			req.setAttribute("id", id);
 		}
+
 		req.setAttribute("article", article);
-		//System.out.println(article.getId());
-		//System.out.println(page);
 		return page+".jsp";
 	}//requestPro end
 

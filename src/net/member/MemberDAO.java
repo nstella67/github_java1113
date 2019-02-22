@@ -283,7 +283,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				id=rs.getString("id");
 			}else {
-				System.out.println("   dkdk");
+				//System.out.println("   dkdk");
 			}
 		}catch(Exception e) {
 			System.out.println("조회 실패 : "+e);
