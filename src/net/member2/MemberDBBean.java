@@ -68,7 +68,7 @@ public class MemberDBBean {
 				cnt=rs.getInt("cnt");
 			}
 		}catch(Exception e) {
-			System.out.println("아이디 중복조회 실패 : "+e);
+			System.out.println("이메일 중복조회 실패 : "+e);
 		}finally {
 			dbclose.close(con, pstmt, rs);
 		}//try end

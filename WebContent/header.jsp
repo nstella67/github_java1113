@@ -49,7 +49,7 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav>  
 <!-- 메인카테고리 끝 -->
 
 <div class="bg-5 text-center">
