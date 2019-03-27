@@ -4,7 +4,7 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
 public class MyAuthenticator extends Authenticator {
-	//»ç¿ëÇÏ°íÀÚ ÇÏ´Â ¸ŞÀÏ¼­¹ö¿¡¼­ ÀÎÁõ¹ŞÀº °èÁ¤/ºñ¹ø
+	//ì‚¬ìš©í•˜ê³ ì í•˜ëŠ” ë©”ì¼ì„œë²„ì—ì„œ ì¸ì¦ë°›ì€ ê³„ì •/ë¹„ë²ˆ
 	private PasswordAuthentication pa;
 	
 	public MyAuthenticator() {

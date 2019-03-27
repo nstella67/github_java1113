@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DBClose {
-  //µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á ÀÚ¿ø ¹İ³³
+  //ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²° ìì› ë°˜ë‚©
   public void close(Connection con) { 
     try {
       if(con!=null) {con.close();}

@@ -2,21 +2,21 @@ package net.utility;
 
 public class Paging {  
   /**
-   * ¼ıÀÚ ÇüÅÂÀÇ ÆäÀÌÂ¡, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ
-   * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½]
+   * ìˆ«ì í˜•íƒœì˜ í˜ì´ì§•, 1 í˜ì´ì§€ë¶€í„° ì‹œì‘
+   * í˜„ì¬ í˜ì´ì§€: 11 / 22   [ì´ì „] 11 12 13 14 15 16 17 18 19 20 [ë‹¤ìŒ]
    * 
-   * @param totalRecord ÀüÃ¼ ·¹ÄÚµå¼ö
-   * @param nowPage     ÇöÀç ÆäÀÌÁö
-   * @param recordPerPage ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö 
+   * @param totalRecord ì „ì²´ ë ˆì½”ë“œìˆ˜
+   * @param nowPage     í˜„ì¬ í˜ì´ì§€
+   * @param recordPerPage í˜ì´ì§€ë‹¹ ë ˆì½”ë“œ ìˆ˜ 
    * @return
    */
   public String paging(int totalRecord, int nowPage, int recordPerPage, String col, String word, String filenm){
-    int pagePerBlock = 10; // ºí·°´ç ÆäÀÌÁö ¼ö
-    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ÀüÃ¼ ÆäÀÌÁö 
-    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ÀüÃ¼ ±×·ì
-    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ÇöÀç ±×·ì
-    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ 
-    int endPage = (nowGrp * pagePerBlock);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á  
+    int pagePerBlock = 10; // ë¸”ëŸ­ë‹¹ í˜ì´ì§€ ìˆ˜
+    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ì „ì²´ í˜ì´ì§€ 
+    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ì „ì²´ ê·¸ë£¹
+    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // í˜„ì¬ ê·¸ë£¹
+    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì‹œì‘ 
+    int endPage = (nowGrp * pagePerBlock);             // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì¢…ë£Œ  
     
     StringBuffer str = new StringBuffer();
     
@@ -27,11 +27,11 @@ public class Paging {
     str.append("  #paging A:visited {text-decoration:none;color:black; font-size: 1em;}");
     str.append("</style>");
     str.append("<DIV id='paging'>");
-    //str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
+    //str.append("í˜„ì¬ í˜ì´ì§€: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
 
-    int _nowPage = (nowGrp-1) * pagePerBlock; // 10°³ ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
+    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°œ ì´ì „ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp >= 2){
-      str.append("[<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>ÀÌÀü</A>]");
+      str.append("[<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>ì´ì „</A>]");
     }
 
     for(int i=startPage; i<=endPage; i++){
@@ -39,7 +39,7 @@ public class Paging {
         break;
       }
  
-      if (nowPage == i){ // ÇöÀç ÆäÀÌÁöÀÌ¸é °­Á¶ È¿°ú
+      if (nowPage == i){ // í˜„ì¬ í˜ì´ì§€ì´ë©´ ê°•ì¡° íš¨ê³¼
         str.append("<span style='font-size: 1.2em; font-weight: bold;'>"+i+"</span>&nbsp;");  
       }else{
         str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+i+"'>"+i+"</A>&nbsp;");
@@ -47,9 +47,9 @@ public class Paging {
       
     }
     
-    _nowPage = (nowGrp * pagePerBlock)+1; // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿
+    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°œ ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp < totalGrp){
-      str.append("[<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>´ÙÀ½</A>]");
+      str.append("[<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'>ë‹¤ìŒ</A>]");
     }
     str.append("</DIV>");
     
@@ -57,21 +57,21 @@ public class Paging {
   }
   
   /**
-   * SPANÅÂ±×¸¦ ÀÌ¿ëÇÑ ¹Ú½º ¸ğµ¨ÀÇ Áö¿ø, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ
-   * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½]
+   * SPANíƒœê·¸ë¥¼ ì´ìš©í•œ ë°•ìŠ¤ ëª¨ë¸ì˜ ì§€ì›, 1 í˜ì´ì§€ë¶€í„° ì‹œì‘
+   * í˜„ì¬ í˜ì´ì§€: 11 / 22   [ì´ì „] 11 12 13 14 15 16 17 18 19 20 [ë‹¤ìŒ]
    * 
-   * @param totalRecord ÀüÃ¼ ·¹ÄÚµå¼ö
-   * @param nowPage     ÇöÀç ÆäÀÌÁö
-   * @param recordPerPage ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö 
+   * @param totalRecord ì „ì²´ ë ˆì½”ë“œìˆ˜
+   * @param nowPage     í˜„ì¬ í˜ì´ì§€
+   * @param recordPerPage í˜ì´ì§€ë‹¹ ë ˆì½”ë“œ ìˆ˜ 
    * @return
    */
   public String paging2(int totalRecord, int nowPage, int recordPerPage, String col, String word, String filenm){
-    int pagePerBlock = 10; // ºí·°´ç ÆäÀÌÁö ¼ö
-    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ÀüÃ¼ ÆäÀÌÁö 
-    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ÀüÃ¼ ±×·ì
-    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ÇöÀç ±×·ì
-    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ 
-    int endPage = (nowGrp * pagePerBlock);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á  
+    int pagePerBlock = 10; // ë¸”ëŸ­ë‹¹ í˜ì´ì§€ ìˆ˜
+    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ì „ì²´ í˜ì´ì§€ 
+    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ì „ì²´ ê·¸ë£¹
+    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // í˜„ì¬ ê·¸ë£¹
+    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì‹œì‘ 
+    int endPage = (nowGrp * pagePerBlock);             // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì¢…ë£Œ  
     
     StringBuffer str = new StringBuffer();
     
@@ -85,8 +85,8 @@ public class Paging {
     str.append("    border: 1px;");
     str.append("    border-style: solid;");
     str.append("    border-color: #cccccc;");
-    str.append("    padding:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
-    str.append("    margin:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
+    str.append("    padding:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
+    str.append("    margin:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
     str.append("  }");
     str.append("  .span_box_2{");
     str.append("    background-color: #CCCCCC;");
@@ -94,16 +94,16 @@ public class Paging {
     str.append("    border: 1px;");
     str.append("    border-style: solid;");
     str.append("    border-color: #cccccc;");
-    str.append("    padding:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
-    str.append("    margin:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
+    str.append("    padding:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
+    str.append("    margin:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
     str.append("  }");
     str.append("</style>");
     str.append("<DIV id='paging'>");
-    //str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
+    //str.append("í˜„ì¬ í˜ì´ì§€: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
 
-    int _nowPage = (nowGrp-1) * pagePerBlock; // 10°³ ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
+    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°œ ì´ì „ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp >= 2){
-      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ÀÌÀü</span></A>&nbsp;");
+      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ì´ì „</span></A>&nbsp;");
     }
 
     for(int i=startPage; i<=endPage; i++){
@@ -118,9 +118,9 @@ public class Paging {
       }
     }
     
-    _nowPage = (nowGrp * pagePerBlock)+1; // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿
+    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°œ ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp < totalGrp){
-      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>´ÙÀ½</span></A>&nbsp;");
+      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ë‹¤ìŒ</span></A>&nbsp;");
     }
     str.append("</DIV>");
     
@@ -128,21 +128,21 @@ public class Paging {
   }
   
   /**
-   * SPANÅÂ±×¸¦ ÀÌ¿ëÇÑ ¹Ú½º ¸ğµ¨ÀÇ Áö¿ø, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ
-   * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½]
+   * SPANíƒœê·¸ë¥¼ ì´ìš©í•œ ë°•ìŠ¤ ëª¨ë¸ì˜ ì§€ì›, 1 í˜ì´ì§€ë¶€í„° ì‹œì‘
+   * í˜„ì¬ í˜ì´ì§€: 11 / 22   [ì´ì „] 11 12 13 14 15 16 17 18 19 20 [ë‹¤ìŒ]
    * 
-   * @param totalRecord ÀüÃ¼ ·¹ÄÚµå¼ö
-   * @param nowPage     ÇöÀç ÆäÀÌÁö
-   * @param recordPerPage ÆäÀÌÁö´ç ·¹ÄÚµå ¼ö 
+   * @param totalRecord ì „ì²´ ë ˆì½”ë“œìˆ˜
+   * @param nowPage     í˜„ì¬ í˜ì´ì§€
+   * @param recordPerPage í˜ì´ì§€ë‹¹ ë ˆì½”ë“œ ìˆ˜ 
    * @return
    */
   public String paging3(int totalRecord, int nowPage, int recordPerPage, String col, String word, String filenm){
-    int pagePerBlock = 10; // ºí·°´ç ÆäÀÌÁö ¼ö
-    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ÀüÃ¼ ÆäÀÌÁö 
-    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ÀüÃ¼ ±×·ì
-    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // ÇöÀç ±×·ì
-    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ 
-    int endPage = (nowGrp * pagePerBlock);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á  
+    int pagePerBlock = 10; // ë¸”ëŸ­ë‹¹ í˜ì´ì§€ ìˆ˜
+    int totalPage = (int)(Math.ceil((double)totalRecord/recordPerPage)); // ì „ì²´ í˜ì´ì§€ 
+    int totalGrp = (int)(Math.ceil((double)totalPage/pagePerBlock));// ì „ì²´ ê·¸ë£¹
+    int nowGrp = (int)(Math.ceil((double)nowPage/pagePerBlock));    // í˜„ì¬ ê·¸ë£¹
+    int startPage = ((nowGrp - 1) * pagePerBlock) + 1; // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì‹œì‘ 
+    int endPage = (nowGrp * pagePerBlock);             // íŠ¹ì • ê·¸ë£¹ì˜ í˜ì´ì§€ ëª©ë¡ ì¢…ë£Œ  
     
     StringBuffer str = new StringBuffer();
     
@@ -156,8 +156,8 @@ public class Paging {
     str.append("    border: 1px;");
     str.append("    border-style: solid;");
     str.append("    border-color: #cccccc;");
-    str.append("    padding:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
-    str.append("    margin:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
+    str.append("    padding:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
+    str.append("    margin:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
     str.append("  }");
     str.append("  .span_box_2{");
     str.append("    background-color: #668db4;");
@@ -166,16 +166,16 @@ public class Paging {
     str.append("    border: 1px;");
     str.append("    border-style: solid;");
     str.append("    border-color: #cccccc;");
-    str.append("    padding:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
-    str.append("    margin:0px 0px 0px 0px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ŞÂÊ*/");
+    str.append("    padding:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
+    str.append("    margin:0px 0px 0px 0px; /*ìœ„, ì˜¤ë¥¸ìª½, ì•„ë˜, ì™¼ìª½*/");
     str.append("  }");
     str.append("</style>");
     str.append("<DIV id='paging'>");
-    //str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
+    //str.append("í˜„ì¬ í˜ì´ì§€: " + nowPage + " / " + totalPage + "&nbsp;&nbsp;");
 
-    int _nowPage = (nowGrp-1) * pagePerBlock; // 10°³ ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
+    int _nowPage = (nowGrp-1) * pagePerBlock; // 10ê°œ ì´ì „ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp >= 2){
-      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ÀÌÀü</span></A>&nbsp;");
+      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ì´ì „</span></A>&nbsp;");
     }
 
     for(int i=startPage; i<=endPage; i++){
@@ -190,9 +190,9 @@ public class Paging {
       }
     }
     
-    _nowPage = (nowGrp * pagePerBlock)+1; // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿
+    _nowPage = (nowGrp * pagePerBlock)+1; // 10ê°œ ë‹¤ìŒ í˜ì´ì§€ë¡œ ì´ë™
     if (nowGrp < totalGrp){
-      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>´ÙÀ½</span></A>&nbsp;");
+      str.append("<A href='./"+filenm+"?col="+col+"&word="+word+"&nowPage="+_nowPage+"'><span class='span_box_1'>ë‹¤ìŒ</span></A>&nbsp;");
     }
     str.append("</DIV>");
     

@@ -3,16 +3,16 @@ package net.utility;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBOpen { //µ•¿Ã≈Õ∫£¿ÃΩ∫ ø¨∞·
+public class DBOpen { //Îç∞Ïù¥ÌÑ∞Î≤†Ïù¥Ïä§ Ïó∞Í≤∞
   
   public Connection getConnection() {
-    //1) Oracle DB ¡§∫∏------------------------------
+    //1) Oracle DB Ï†ïÎ≥¥------------------------------
     String url      = "jdbc:oracle:thin:@localhost:1521:xe";
     String user     = "java1113";
     String password = "1234";
     String driver   = "oracle.jdbc.driver.OracleDriver";
 
-    //2) MySQL DB ¡§∫∏-------------------------------
+    //2) MySQL DB Ï†ïÎ≥¥-------------------------------
     /*
     String url      = "jdbc:mysql://localhost:3306/soldesk?useUnicode=true&characterEncoding=utf8";
     String user     = "root";
@@ -28,7 +28,7 @@ public class DBOpen { //µ•¿Ã≈Õ∫£¿ÃΩ∫ ø¨∞·
         con = DriverManager.getConnection(url, user, password);
 
     }catch (Exception e) {
-        System.out.println("DBø¨∞· Ω«∆– : " + e);
+        System.out.println("DBÏó∞Í≤∞ Ïã§Ìå® : " + e);
     }//try end   
     
     return con;

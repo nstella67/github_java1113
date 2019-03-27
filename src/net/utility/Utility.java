@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import javax.swing.ImageIcon;
 
 public class Utility {
-  // ¼­ºñ½º½Ã¿¡´Â µµ¸ŞÀÎÀ¸·Î º¯°æµÊ.
+  // ì„œë¹„ìŠ¤ì‹œì—ëŠ” ë„ë©”ì¸ìœ¼ë¡œ ë³€ê²½ë¨.
   private static final String root = "/myweb";
 
   public static synchronized String getRoot() {
@@ -30,7 +30,7 @@ public class Utility {
   }
 
   /**
-   * 2048 -> 2°¡ ¸®ÅÏµÊ
+   * 2048 -> 2ê°€ ë¦¬í„´ë¨
    * 
    * @param filesize
    * @return
@@ -48,7 +48,7 @@ public class Utility {
   }
 
   /**
-   * 2048 -> 2 KB°¡ ¸®ÅÏµÊ
+   * 2048 -> 2 KBê°€ ë¦¬í„´ë¨
    * 
    * @param filesize
    * @return
@@ -66,22 +66,22 @@ public class Utility {
   }
 
   /**
-   * ¿À´Ã ³¯Â¥¸¦ ¹®ÀÚ¿­·Î ¸®ÅÏÇÕ´Ï´Ù.
+   * ì˜¤ëŠ˜ ë‚ ì§œë¥¼ ë¬¸ìì—´ë¡œ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
    * @return
    */
   public static synchronized String getCalendarDay() {
     String str = "";
     Calendar cal = Calendar.getInstance();
-    str = "" + cal.get(Calendar.DATE); // ³¯Â¥
+    str = "" + cal.get(Calendar.DATE); // ë‚ ì§œ
 
     return str;
   }
 
   /**
-   * 2010-12-14 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 2010-12-14 í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
-   * @return 2008-01-30 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+   * @return 2008-01-30 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
    */
   public static synchronized String getDate() {
     SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,9 +93,9 @@ public class Utility {
   }
 
   /**
-   * 20101214 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 20101214 í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
-   * @return 20101214 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+   * @return 20101214 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
    */
   public static synchronized String getDate2() {
     SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd");
@@ -107,8 +107,8 @@ public class Utility {
   }
 
   /**
-   * yyyyMMdd_hhmiss Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
-   * @return 20110601_121003 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+   * yyyyMMdd_hhmiss í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
+   * @return 20110601_121003 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
    */
   public static String getDate3(){
       SimpleDateFormat sd = new SimpleDateFormat("yyyyMMdd_hhmmss");
@@ -119,7 +119,7 @@ public class Utility {
       return date;
   }
   /**
-   * 20101214 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 20101214 í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
    * @param _date
    * @return
@@ -133,12 +133,12 @@ public class Utility {
   }
 
   /**
-   * 2010³â 12¿ù 14ÀÏ Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 2010ë…„ 12ì›” 14ì¼ í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
    * @return
    */
   public static synchronized String getDate4() {
-    SimpleDateFormat sd = new SimpleDateFormat("yyyy³â MM¿ù ddÀÏ");
+    SimpleDateFormat sd = new SimpleDateFormat("yyyyë…„ MMì›” ddì¼");
     String date = sd.format(new Date());
 
     // System.out.println(date);
@@ -146,7 +146,7 @@ public class Utility {
   }
 
   /**
-   * 20101214ÀÏ Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 20101214ì¼ í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
    * @param _date
    * @return
@@ -160,9 +160,9 @@ public class Utility {
   }
 
   /**
-   * 2010-12-14 Çü½ÄÀÇ ³¯Â¥¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * 2010-12-14 í˜•ì‹ì˜ ë‚ ì§œë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
-   * @return 2008-01-30 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+   * @return 2008-01-30 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
    */
   public static synchronized String getDate6(int year, int month, int day) {
     SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -175,8 +175,8 @@ public class Utility {
   }
 
   /**
-   * ³»¿ëÁß¿¡ Æ¯¼ö¹®ÀÚ Ç¥ÇöÀ» À§ÇØ HTML Æ¯¼ö¹®ÀÚ·Î º¯È¯ÇÕ´Ï´Ù. 
-   * ¿¹) Å×ÀÌºí ÅÂ±×
+   * ë‚´ìš©ì¤‘ì— íŠ¹ìˆ˜ë¬¸ì í‘œí˜„ì„ ìœ„í•´ HTML íŠ¹ìˆ˜ë¬¸ìë¡œ ë³€í™˜í•©ë‹ˆë‹¤. 
+   * ì˜ˆ) í…Œì´ë¸” íƒœê·¸
    *     <TABLE> -> &lt;TABLE&gt;
    */
   public static synchronized String convertChar(String str) {
@@ -185,7 +185,7 @@ public class Utility {
     str = str.replaceAll(">", "&gt;");
     str = str.replaceAll("'", "&apos;");   // '
     str = str.replaceAll("\"", "&quot;"); // "
-    str = str.replaceAll("\r\n", "<BR>");  // ¶óÀÎ º¯°æ
+    str = str.replaceAll("\r\n", "<BR>");  // ë¼ì¸ ë³€ê²½
     
     return str;
   }
@@ -233,7 +233,7 @@ public class Utility {
     return value;
   }
 
-  // ÁÙ ¹Ù²Ù±â
+  // ì¤„ ë°”ê¾¸ê¸°
   public static synchronized String getConvertCharTextArea(String str) {
     for (int i = 0; i < str.length(); i++) {
       if (str.charAt(i) == '&') {
@@ -262,7 +262,7 @@ public class Utility {
   }
 
   /**
-   * ·Î±×ÀÎÇÑ °ü¸®ÀÚ ÀÎÁö °Ë»ç
+   * ë¡œê·¸ì¸í•œ ê´€ë¦¬ì ì¸ì§€ ê²€ì‚¬
    * 
    * @param session
    * @return
@@ -272,8 +272,8 @@ public class Utility {
 
     HttpSession session = request.getSession();
     String s_id = Utility.checkNull((String) session.getAttribute("s_id"));
-    // System.out.println("ÇöÀç ·Î±×ÀÎ °ü¸®ÀÚ s_id: " + s_id);
-    if (s_id.equals("") == true) { // ·Î±×ÀÎÇÏÁö ¾ÊÀº °æ¿ì
+    // System.out.println("í˜„ì¬ ë¡œê·¸ì¸ ê´€ë¦¬ì s_id: " + s_id);
+    if (s_id.equals("") == true) { // ë¡œê·¸ì¸í•˜ì§€ ì•Šì€ ê²½ìš°
       sw = false;
     } else {
       sw = true;
@@ -283,7 +283,7 @@ public class Utility {
   }
 
   /**
-   * ·Î±×ÀÎÇÑ »ç¿ëÀÚÀÎÁö °Ë»ç
+   * ë¡œê·¸ì¸í•œ ì‚¬ìš©ìì¸ì§€ ê²€ì‚¬
    * 
    * @param request
    * @return
@@ -294,8 +294,8 @@ public class Utility {
     HttpSession session = request.getSession();
     String s_member_id = Utility.checkNull((String) session
         .getAttribute("s_member_id"));
-    // System.out.println("ÇöÀç ·Î±×ÀÎ »ç¿ëÀÚ s_member_id: " + s_member_id);
-    if (s_member_id.equals("") == true) { // ·Î±×ÀÎÇÏÁö ¾ÊÀº °æ¿ì
+    // System.out.println("í˜„ì¬ ë¡œê·¸ì¸ ì‚¬ìš©ì s_member_id: " + s_member_id);
+    if (s_member_id.equals("") == true) { // ë¡œê·¸ì¸í•˜ì§€ ì•Šì€ ê²½ìš°
       sw = false;
     } else {
       sw = true;
@@ -305,7 +305,7 @@ public class Utility {
   }
 
   /**
-   * ·Î±×ÀÎÇÑ »ç¿ëÀÚ ÀÎÁö °Ë»ç
+   * ë¡œê·¸ì¸í•œ ì‚¬ìš©ì ì¸ì§€ ê²€ì‚¬
    * 
    * @param session
    * @return
@@ -316,7 +316,7 @@ public class Utility {
     HttpSession session = request.getSession();
     String s_member_id = Utility.checkNull((String) session
         .getAttribute("s_member_id"));
-    if (s_member_id.length() > 1) { // ·Î±×ÀÎÇÏÁö ¾ÊÀº °æ¿ì
+    if (s_member_id.length() > 1) { // ë¡œê·¸ì¸í•˜ì§€ ì•Šì€ ê²½ìš°
       sw = true;
     } else {
       sw = false;
@@ -386,14 +386,14 @@ public class Utility {
   }
 
   /**
-   * ÀÓÀÇÀÇ Á¤¼ö¸¦ ¸®ÅÏÇÕ´Ï´Ù.
+   * ì„ì˜ì˜ ì •ìˆ˜ë¥¼ ë¦¬í„´í•©ë‹ˆë‹¤.
    * 
    * @param range
-   *          Á¤¼ö¹üÀ§ 0 ~ ¹üÀ§-1
-   * @return ³­¼ö ¸®ÅÏ
+   *          ì •ìˆ˜ë²”ìœ„ 0 ~ ë²”ìœ„-1
+   * @return ë‚œìˆ˜ ë¦¬í„´
    */
   public static synchronized int random(int range) {
-    // 0 ~ range-1±îÁö »êÃâµÊ.
+    // 0 ~ range-1ê¹Œì§€ ì‚°ì¶œë¨.
     int rnd = 0;
     Random random = new Random();
     rnd = random.nextInt(range);
@@ -421,20 +421,20 @@ public class Utility {
     String progress = null;
 
     if (nowtime.after(endtime) == true) {
-      progress = "Á¾·á";
+      progress = "ì¢…ë£Œ";
     } else {
-      progress = "ÁøÇà";
+      progress = "ì§„í–‰";
     }
 
     return progress;
   }
 
   /**
-   * Ãµ´ÜÀ§¸¶´Ù ÄÄ¸¶¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+   * ì²œë‹¨ìœ„ë§ˆë‹¤ ì»´ë§ˆë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
    * 
    * @param price
-   *          ±İ¾×
-   * @return ÄÄ¸¶°¡ Æ÷ÇÔµÈ ¹®ÀÚ¿­
+   *          ê¸ˆì•¡
+   * @return ì»´ë§ˆê°€ í¬í•¨ëœ ë¬¸ìì—´
    */
   public static synchronized String comma(int price) {
     DecimalFormat comma = new DecimalFormat("###,##0");
@@ -451,27 +451,27 @@ public class Utility {
   }
 
   /**
-   * null ¹®ÀÚ¸¦ °ø¹é ¹®ÀÚ·Î º¯°æÇÕ´Ï´Ù.
+   * null ë¬¸ìë¥¼ ê³µë°± ë¬¸ìë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
    * 
    * @param str
-   *          °Ë»çÇÒ ¹®ÀÚ¿­
-   * @return null °ªÀ» °¡Áö°í ÀÖ´Â °´Ã¼´Â °ø¹é ¹®ÀÚ¿­·Î ¸®ÅÏµÊ
+   *          ê²€ì‚¬í•  ë¬¸ìì—´
+   * @return null ê°’ì„ ê°€ì§€ê³  ìˆëŠ” ê°ì²´ëŠ” ê³µë°± ë¬¸ìì—´ë¡œ ë¦¬í„´ë¨
    */
   public static synchronized String checkNull(String str) {
     if (str == null) {
-      return "";  // null ÀÌ¸é ºó°ø¹éÀ¸·Î ¸®ÅÏ
+      return "";  // null ì´ë©´ ë¹ˆê³µë°±ìœ¼ë¡œ ë¦¬í„´
     } else {
-      return str; // ¿ø·¡ÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+      return str; // ì›ë˜ì˜ ë¬¸ìì—´ ë¦¬í„´
     }
   }
 
   /**
-   * request °´Ã¼¿¡¼­ ¹®ÀÚ¿­À» ÃßÃâÇÕ´Ï´Ù.
+   * request ê°ì²´ì—ì„œ ë¬¸ìì—´ì„ ì¶”ì¶œí•©ë‹ˆë‹¤.
    * 
    * @param request
    * @param str
-   *          ÃßÃâÇÒ º¯¼ö
-   * @return º¯È¯µÈ ¹®ÀÚ¿­
+   *          ì¶”ì¶œí•  ë³€ìˆ˜
+   * @return ë³€í™˜ëœ ë¬¸ìì—´
    */
   public static synchronized String checkNull(HttpServletRequest request, String str) {
     String rstr = "";
@@ -486,7 +486,7 @@ public class Utility {
   }
 
   /**
-   * ¹®ÀÚ¿­ÀÌ Object Å¸ÀÔÀ¸·Î Àü¼ÛµÈ °ÍÀ» null Ã³¸®
+   * ë¬¸ìì—´ì´ Object íƒ€ì…ìœ¼ë¡œ ì „ì†¡ëœ ê²ƒì„ null ì²˜ë¦¬
    * 
    * @param str
    * @return
@@ -500,7 +500,7 @@ public class Utility {
   }
 
   /**
-   * FileUpload 1.2 ÇÑ±Û º¯È¯
+   * FileUpload 1.2 í•œê¸€ ë³€í™˜
    * 
    * @param str
    * @return
@@ -517,7 +517,7 @@ public class Utility {
   }
 
   /**
-   * MVC, Tomcat 7.0±â¹İ JSP ÆäÀÌÁö ÇÑ±Û º¯È¯
+   * MVC, Tomcat 7.0ê¸°ë°˜ JSP í˜ì´ì§€ í•œê¸€ ë³€í™˜
    * 
    * @param str
    * @return
@@ -534,7 +534,7 @@ public class Utility {
   }
 
   /**
-   * fileupload 1.2.2 ÇÑ±Û Ã³¸®
+   * fileupload 1.2.2 í•œê¸€ ì²˜ë¦¬
    * 
    * @param ko
    * @return
@@ -554,7 +554,7 @@ public class Utility {
   }
 
   /**
-   * fileupload 1.2.2 ÇÑ±Û Ã³¸®
+   * fileupload 1.2.2 í•œê¸€ ì²˜ë¦¬
    * 
    * @param ko
    * @return
@@ -592,7 +592,7 @@ public class Utility {
   }
 
   /**
-   * ÁÖ¾îÁø ¹®ÀÚ¼ÂÀÇ ¹®ÀÚÄÚµå¸¦ º¯È¯ÇÕ´Ï´Ù.
+   * ì£¼ì–´ì§„ ë¬¸ìì…‹ì˜ ë¬¸ìì½”ë“œë¥¼ ë³€í™˜í•©ë‹ˆë‹¤.
    * 
    * @param ko
    * @return
@@ -620,21 +620,21 @@ public class Utility {
   }
 
   /**
-   * ³»¿ëÁß¿¡ Æ¯¼ö¹®ÀÚ Ç¥ÇöÀ» À§ÇØ HTML Æ¯¼ö¹®ÀÚ·Î º¯È¯ÇÕ´Ï´Ù.
+   * ë‚´ìš©ì¤‘ì— íŠ¹ìˆ˜ë¬¸ì í‘œí˜„ì„ ìœ„í•´ HTML íŠ¹ìˆ˜ë¬¸ìë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
    */
   public static synchronized String getConvertBR(String str) {
     return str.replace("\n", "<BR>");
   }
 
   /**
-   * ÆÄÀÏ Download½Ã ÇÑ±Û ÆÄÀÏ ÀÎÄÚµù
+   * íŒŒì¼ Downloadì‹œ í•œê¸€ íŒŒì¼ ì¸ì½”ë”©
    * 
    * @param str
    * @return
    */
   public static synchronized String getEncod(String str) {
     try {
-      // resin UTF-8 ·Î ÁöÁ¤
+      // resin UTF-8 ë¡œ ì§€ì •
       // str = java.net.URLEncoder.encode(str, "EUC-KR");
       // str = java.net.URLEncoder.encode(str, "UTF-8");
       str = java.net.URLEncoder.encode(str, "KSC5601");
@@ -650,12 +650,12 @@ public class Utility {
         i = i + 3;
       }
     }
-    // System.out.println("ÃÖÁ¾º¯È¯ ÇüÅÂ: "+str);
+    // System.out.println("ìµœì¢…ë³€í™˜ í˜•íƒœ: "+str);
     return str;
   }
 
   /**
-   * Struts2 GET¹æ½Ä ÇÑ±Û ¹®ÀÚ¼Â ÀÎÄÚµù
+   * Struts2 GETë°©ì‹ í•œê¸€ ë¬¸ìì…‹ ì¸ì½”ë”©
    * 
    * @param str
    * @return
@@ -682,7 +682,7 @@ public class Utility {
   }
 
   /**
-   * ½ºÆ®·µÃ÷ ÀÚ·á½Ç ÇÑ±Û Ãâ·Â ¸Ş¼Òµå
+   * ìŠ¤íŠ¸ëŸ¿ì¸  ìë£Œì‹¤ í•œê¸€ ì¶œë ¥ ë©”ì†Œë“œ
    * 
    * @param str
    * @return
@@ -708,7 +708,7 @@ public class Utility {
   }
 
   /**
-   * FCKEditor 2.6.8 ÇÑ±Û º¯È¯
+   * FCKEditor 2.6.8 í•œê¸€ ë³€í™˜
    * 
    * @param str
    * @return
@@ -725,21 +725,21 @@ public class Utility {
   }
 
   /**
-   * ÆÄÀÏÀ» »èÁ¦ÇÕ´Ï´Ù.
+   * íŒŒì¼ì„ ì‚­ì œí•©ë‹ˆë‹¤.
    * 
    * @param folder
-   *          ÆÄÀÏÀÌ ÀúÀåµÈ Æú´õ
+   *          íŒŒì¼ì´ ì €ì¥ëœ í´ë”
    * @param filename
-   *          »èÁ¦ÇÒ ÆÄÀÏ¸í
-   * @return true-»èÁ¦ ¼º°ø, false-»èÁ¦ ½ÇÆĞ
+   *          ì‚­ì œí•  íŒŒì¼ëª…
+   * @return true-ì‚­ì œ ì„±ê³µ, false-ì‚­ì œ ì‹¤íŒ¨
    */
   public static synchronized boolean deleteFile(String folder, String filename) {
     boolean ret = false;
 
     try {
-      if (filename != null) { // ±âÁ¸¿¡ ÆÄÀÏÀÌ Á¸ÀçÇÏ´Â °æ¿ì »èÁ¦
+      if (filename != null) { // ê¸°ì¡´ì— íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš° ì‚­ì œ
         File file = new File(folder + "/" + filename);
-        // ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ ÈÄ »èÁ¦
+        // íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸ í›„ ì‚­ì œ
         if (file.exists()) {
           ret = file.delete();
         }
@@ -752,12 +752,12 @@ public class Utility {
   }
 
   /**
-   * applicationÀÌ¸§À» ÀÔ·Â¹Ş¾Æ Àı´ë °æ·Î¸¦ »êÃâÇÕ´Ï´Ù. ¿¹) getRealPath(request, "WEB-INF/config")
+   * applicationì´ë¦„ì„ ì…ë ¥ë°›ì•„ ì ˆëŒ€ ê²½ë¡œë¥¼ ì‚°ì¶œí•©ë‹ˆë‹¤. ì˜ˆ) getRealPath(request, "WEB-INF/config")
    * 
    * @param request
    * @param dir
-   *          application ÀÌ¸§
-   * @return Àı´ë °æ·Î ¸®ÅÏ
+   *          application ì´ë¦„
+   * @return ì ˆëŒ€ ê²½ë¡œ ë¦¬í„´
    * @throws IOException
    */
   public static synchronized String getRealPath(HttpServletRequest request, String dir) {
@@ -775,7 +775,7 @@ public class Utility {
   }
 
   /**
-   * ÇÑ±Û º¯È¯ ÄÚµå¸¦ Ã£´Â ±â´ÉÀ» Áö¿ø
+   * í•œê¸€ ë³€í™˜ ì½”ë“œë¥¼ ì°¾ëŠ” ê¸°ëŠ¥ì„ ì§€ì›
    * 
    * @param s
    */
@@ -797,13 +797,13 @@ public class Utility {
   }
 
   /**
-   * null ¹®ÀÚ¸¦ ¼ıÀÚ 0À¸·Î º¯°æÇÕ´Ï´Ù.
+   * null ë¬¸ìë¥¼ ìˆ«ì 0ìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
    * 
    * @param request
-   *          request °´Ã¼
+   *          request ê°ì²´
    * @param str
-   *          °Ë»çÇÒ ¹®ÀÚ¿­
-   * @return ¼ıÀÚ¸¦ ¸®ÅÏ
+   *          ê²€ì‚¬í•  ë¬¸ìì—´
+   * @return ìˆ«ìë¥¼ ë¦¬í„´
    */
   public static synchronized int checkInt(HttpServletRequest request, String str) {
     int su = 0;
@@ -824,13 +824,13 @@ public class Utility {
   }
 
   /**
-   * null ¹®ÀÚ¸¦ ¼ıÀÚ 0À¸·Î º¯°æÇÕ´Ï´Ù.
+   * null ë¬¸ìë¥¼ ìˆ«ì 0ìœ¼ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.
    * 
    * @param request
-   *          request °´Ã¼
+   *          request ê°ì²´
    * @param str
-   *          °Ë»çÇÒ ¹®ÀÚ¿­
-   * @return ¼ıÀÚ¸¦ ¸®ÅÏ
+   *          ê²€ì‚¬í•  ë¬¸ìì—´
+   * @return ìˆ«ìë¥¼ ë¦¬í„´
    */
   public static synchronized int checkAttrInt(HttpServletRequest request, String str) {
     int su = 0;
@@ -843,7 +843,7 @@ public class Utility {
   }
 
   /**
-   * Ajax ÇÑ±Û º¯È¯
+   * Ajax í•œê¸€ ë³€í™˜
    * 
    * @param ko
    * @return
@@ -860,7 +860,7 @@ public class Utility {
   }
 
   /**
-   * ÀÚ¹Ù½ºÅ©¸³Æ® Æ¯¼ö¹®ÀÚ, ÁÙ¹Ù²Ş ¹®ÀÚ º¯È¯
+   * ìë°”ìŠ¤í¬ë¦½íŠ¸ íŠ¹ìˆ˜ë¬¸ì, ì¤„ë°”ê¿ˆ ë¬¸ì ë³€í™˜
    * 
    * @param str
    * @return
@@ -876,7 +876,7 @@ public class Utility {
   }
 
   /**
-   * Ajax ÇÑ±Û º¯È¯
+   * Ajax í•œê¸€ ë³€í™˜
    * 
    * @param ko
    * @return
@@ -895,7 +895,7 @@ public class Utility {
   }
 
   /**
-   * ¹®ÀÚ¿­ °æ·Î¸¦ ¹Ş¾Æ ¸ğµç ÆÄÀÏ ¸ñ·ÏÀ» ¸®ÅÏ
+   * ë¬¸ìì—´ ê²½ë¡œë¥¼ ë°›ì•„ ëª¨ë“  íŒŒì¼ ëª©ë¡ì„ ë¦¬í„´
    * 
    * @param dir
    * @return
@@ -907,7 +907,7 @@ public class Utility {
     try {
       // Check SD Card mount.
       sdDir = new File("."); // /sdcard
-      // Á¸Àç/¾²±â ¿©ºÎ È®ÀÎ
+      // ì¡´ì¬/ì“°ê¸° ì—¬ë¶€ í™•ì¸
       if (sdDir.exists() && sdDir.canWrite()) {
         File _dir = new File(dir);
         if (_dir.exists() && _dir.canRead()) {
@@ -922,7 +922,7 @@ public class Utility {
   }
 
   /**
-   * ÆÄÀÏ °´Ã¼¸¦ ¹Ş¾Æ ÆÄÀÏ ¸ñ·ÏÀ» ¸®ÅÏ
+   * íŒŒì¼ ê°ì²´ë¥¼ ë°›ì•„ íŒŒì¼ ëª©ë¡ì„ ë¦¬í„´
    * 
    * @param dir
    * @return
@@ -940,7 +940,7 @@ public class Utility {
   }
 
   /**
-   * ÆÄÀÏ ¸ñ·Ï¿¡¼­ È®ÀåÀÚ¸¦ Á¦°ÅÇÔ
+   * íŒŒì¼ ëª©ë¡ì—ì„œ í™•ì¥ìë¥¼ ì œê±°í•¨
    * 
    * @param str
    * @return
@@ -958,7 +958,7 @@ public class Utility {
   }
 
   /**
-   * ÆÄÀÏ¿¡¼­ È®ÀåÀÚ¸¦ Á¦°ÅÇÔ. ¿¹) data.txt --> data
+   * íŒŒì¼ì—ì„œ í™•ì¥ìë¥¼ ì œê±°í•¨. ì˜ˆ) data.txt --> data
    * 
    * @param str
    * @return
@@ -971,9 +971,9 @@ public class Utility {
     return noExt;
   }
 
-  // Æú´õ¸¦ »ı¼º
+  // í´ë”ë¥¼ ìƒì„±
   public static synchronized void makeFolder(String _dir) {
-    File sdDir = null; // Æú´õ¸í
+    File sdDir = null; // í´ë”ëª…
     File dir = null;
 
     sdDir = new File(".");
@@ -1005,7 +1005,7 @@ public class Utility {
   public static synchronized String convertFilename(String str) {
     // 20101201_090101
     // 012345678901234
-    // 2010³â 12¿ù 1ÀÏ 09½Ã 01ºĞ 01ÃÊ
+    // 2010ë…„ 12ì›” 1ì¼ 09ì‹œ 01ë¶„ 01ì´ˆ
     String year = str.substring(0, 4);
     String month = str.substring(4, 6);
     String day = str.substring(6, 8);
@@ -1013,14 +1013,14 @@ public class Utility {
     String minute = str.substring(11, 13);
     String second = str.substring(13);
 
-    String _str = year + "³â " + month + "¿ù " + day + "ÀÏ " + hour + "½Ã "
-        + minute + "ºĞ " + second + "ÃÊ ";
+    String _str = year + "ë…„ " + month + "ì›” " + day + "ì¼ " + hour + "ì‹œ "
+        + minute + "ë¶„ " + second + "ì´ˆ ";
 
     return _str;
   }
 
   /**
-   * ÆÄÀÏ »èÁ¦
+   * íŒŒì¼ ì‚­ì œ
    * @param fname
    * @return
    */
@@ -1036,7 +1036,7 @@ public class Utility {
   }
 
   /**
-   * ¹ÙÀÌÆ®¹è¿­·Î µÇ¾î ÀÖ´Â ¹®ÀÚ¿­À» ¹Ş¾Æ ¿ø·¡ÀÇ ¹®ÀÚ¿­·Î º¯È¯
+   * ë°”ì´íŠ¸ë°°ì—´ë¡œ ë˜ì–´ ìˆëŠ” ë¬¸ìì—´ì„ ë°›ì•„ ì›ë˜ì˜ ë¬¸ìì—´ë¡œ ë³€í™˜
    * 
    * @param str
    * @return
@@ -1062,13 +1062,13 @@ public class Utility {
   }
 
   /**
-   * ¹®ÀÚ¿­À» ¹ÙÀÌÆ® ¹è¿­ ¹®ÀÚ¿­·Î º¯È¯
+   * ë¬¸ìì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ ë¬¸ìì—´ë¡œ ë³€í™˜
    * 
    * @param str
    * @return
    */
   public static synchronized String stringToByte(String str) {
-    String deli = ","; // ±¸ºĞÀÚ
+    String deli = ","; // êµ¬ë¶„ì
     String retVal = "";
     try {
       byte[] bstr = str.getBytes("UTF-8");
@@ -1084,7 +1084,7 @@ public class Utility {
   }
 
   /**
-   * ÇöÀç ½Ã°£À» 1970³â 1¿ù 1ÀÏºÎÅÍ ¼öÄ¡Çü½ÄÀ¸·Î ¸®ÅÏ
+   * í˜„ì¬ ì‹œê°„ì„ 1970ë…„ 1ì›” 1ì¼ë¶€í„° ìˆ˜ì¹˜í˜•ì‹ìœ¼ë¡œ ë¦¬í„´
    * 
    * @return
    */
@@ -1095,7 +1095,7 @@ public class Utility {
   }
 
   /**
-   * ÁÖ¾îÁø ½Ã°£À» 1970³â 1¿ù 1ÀÏºÎÅÍ ¼öÄ¡Çü½ÄÀ¸·Î ¸®ÅÏ
+   * ì£¼ì–´ì§„ ì‹œê°„ì„ 1970ë…„ 1ì›” 1ì¼ë¶€í„° ìˆ˜ì¹˜í˜•ì‹ìœ¼ë¡œ ë¦¬í„´
    * 
    * @return
    */
@@ -1113,14 +1113,14 @@ public class Utility {
   }
 
   /**
-   * ÁÖ¾îÁø ³¯Â¥¿Í ±â°£À» °è»êÇÏ¿© »õ±Û ¿©ºÎ ÆÇ´Ü ÇöÀç ³¯Â¥°¡ 2013-02-04 ±ÛÀ» µî·Ï³¯Â¥ 2013-02-02
-   * getTimeNew("2013-02-04", 2) : »õ±Û Ã³¸®, true getTimeNew("2013-02-04", 3) : »õ±Û
-   * Ã³¸®, false
+   * ì£¼ì–´ì§„ ë‚ ì§œì™€ ê¸°ê°„ì„ ê³„ì‚°í•˜ì—¬ ìƒˆê¸€ ì—¬ë¶€ íŒë‹¨ í˜„ì¬ ë‚ ì§œê°€ 2013-02-04 ê¸€ì„ ë“±ë¡ë‚ ì§œ 2013-02-02
+   * getTimeNew("2013-02-04", 2) : ìƒˆê¸€ ì²˜ë¦¬, true getTimeNew("2013-02-04", 3) : ìƒˆê¸€
+   * ì²˜ë¦¬, false
    * 
    * @param date
-   *          ¹®ÀÚ¿­·Î µÈ ³¯Â¥
+   *          ë¬¸ìì—´ë¡œ ëœ ë‚ ì§œ
    * @param period
-   *          »õ±Û·Î ÁöÁ¤ÇÒ ±â°£
+   *          ìƒˆê¸€ë¡œ ì§€ì •í•  ê¸°ê°„
    * @return
    */
   public static synchronized boolean getTimeNew(String date, int period) {
@@ -1133,37 +1133,37 @@ public class Utility {
     } catch (Exception e) {
     }
     // System.out.println(date);
-    // 1970³â1¿ù1ÀÏºÎÅÍ ½Ã°£À» 1000À» 1ÃÊ·ÎÇÏ¿© °è»êÇÏ¿© ¸®ÅÏ
-    long time = _date.getTime(); // ±ÛÀ» ÀÛ¼ºÇÑ ½Ã°£
+    // 1970ë…„1ì›”1ì¼ë¶€í„° ì‹œê°„ì„ 1000ì„ 1ì´ˆë¡œí•˜ì—¬ ê³„ì‚°í•˜ì—¬ ë¦¬í„´
+    long time = _date.getTime(); // ê¸€ì„ ì‘ì„±í•œ ì‹œê°„
 
-    // ÇöÀç ½Ã°£À» 1970³â 1¿ù 1ÀÏºÎÅÍ ¼öÄ¡Çü½ÄÀ¸·Î ¸®ÅÏ
+    // í˜„ì¬ ì‹œê°„ì„ 1970ë…„ 1ì›” 1ì¼ë¶€í„° ìˆ˜ì¹˜í˜•ì‹ìœ¼ë¡œ ë¦¬í„´
     long currentTime = System.currentTimeMillis();
 
-    // ÇöÀç ½Ã°£°ú ±Û µî·Ï½Ã°£ÀÇ Â÷ÀÌ¸¦ °è»ê
+    // í˜„ì¬ ì‹œê°„ê³¼ ê¸€ ë“±ë¡ì‹œê°„ì˜ ì°¨ì´ë¥¼ ê³„ì‚°
     long diff = currentTime - time;
 
-    // 1ÀÏ 86,400,000: 1ÃÊ¸¦ 1000À¸·Î ÇÏ·ç¸¦ °è»ê
-    // 0.0001 --> 1: ¿À´Ã ³¯Â¥
-    // 1.00002 --> 2: ¾îÁ¦ ³¯Â¥
+    // 1ì¼ 86,400,000: 1ì´ˆë¥¼ 1000ìœ¼ë¡œ í•˜ë£¨ë¥¼ ê³„ì‚°
+    // 0.0001 --> 1: ì˜¤ëŠ˜ ë‚ ì§œ
+    // 1.00002 --> 2: ì–´ì œ ë‚ ì§œ
     int day = (int) Math.ceil(((double) diff / 86400000));
 
     if (day <= period) {
-      sw = true; // ÃÖ½Å±Û Ã³¸®
+      sw = true; // ìµœì‹ ê¸€ ì²˜ë¦¬
     }
     return sw;
   }
 
   /**
-   * ÀÌ¹ÌÁö »çÀÌÁî¸¦ º¯°æÇÏ¿© »õ·Î¿î ÀÌ¹ÌÁö¸¦ »ı¼ºÇÕ´Ï´Ù. ¿øº» ÀÌ¹ÌÁö´Â Ãà¼ÒÈÄ »èÁ¦ÇÕ´Ï´Ù.
+   * ì´ë¯¸ì§€ ì‚¬ì´ì¦ˆë¥¼ ë³€ê²½í•˜ì—¬ ìƒˆë¡œìš´ ì´ë¯¸ì§€ë¥¼ ìƒì„±í•©ë‹ˆë‹¤. ì›ë³¸ ì´ë¯¸ì§€ëŠ” ì¶•ì†Œí›„ ì‚­ì œí•©ë‹ˆë‹¤.
    * 
    * @param dir
-   *          ±âÁØ Æú´õ
+   *          ê¸°ì¤€ í´ë”
    * @param _src
-   *          ¿øº» ÀÌ¹ÌÁö
+   *          ì›ë³¸ ì´ë¯¸ì§€
    * @param width
-   *          »ı¼ºµÉ ÀÌ¹ÌÁö ³Êºñ
+   *          ìƒì„±ë  ì´ë¯¸ì§€ ë„ˆë¹„
    * @param height
-   *          »ı¼ºµÉ ÀÌ¹ÌÁö ³ôÀÌ, ImageUtil.RATIO´Â ÀÚµ¿ ºñ·Ê ºñÀ²
+   *          ìƒì„±ë  ì´ë¯¸ì§€ ë†’ì´, ImageUtil.RATIOëŠ” ìë™ ë¹„ë¡€ ë¹„ìœ¨
    * @throws IOException
    */
   public static synchronized String imgResize(String dir, String filename, int width,
@@ -1177,35 +1177,35 @@ public class Utility {
     int SAME = -1;
 
     Image srcImg = null;
-    // ÆÄÀÏÀÇ È®ÀåÀÚ ÃßÃâ
+    // íŒŒì¼ì˜ í™•ì¥ì ì¶”ì¶œ
     String suffix = src.getName().substring(src.getName().lastIndexOf('.') + 1)
         .toLowerCase();
-    // ÀÌ¹ÌÁöÀÇ È®ÀåÀÚ¸¦ °Ë»öÇÏ¿© ÀÌ¹ÌÁö ÆÄÀÏÀÎÁö °Ë»ç
+    // ì´ë¯¸ì§€ì˜ í™•ì¥ìë¥¼ ê²€ìƒ‰í•˜ì—¬ ì´ë¯¸ì§€ íŒŒì¼ì¸ì§€ ê²€ì‚¬
     if (suffix.equals("jpg") || suffix.equals("bmp") || suffix.equals("png")
         || suffix.equals("gif")) {
-      srcImg = ImageIO.read(src); // ¸Ş¸ğ¸®¿¡ ÀÌ¹ÌÁö »ı¼º
+      srcImg = ImageIO.read(src); // ë©”ëª¨ë¦¬ì— ì´ë¯¸ì§€ ìƒì„±
     } else {
       srcImg = new ImageIcon(src.getAbsolutePath()).getImage();
     }
 
-    int srcWidth = srcImg.getWidth(null); // ¿øº» ÀÌ¹ÌÁö ³Êºñ ÃßÃâ
-    int srcHeight = srcImg.getHeight(null); // ¿øº» ÀÌ¹ÌÁö ³ôÀÌ ÃßÃâ
+    int srcWidth = srcImg.getWidth(null); // ì›ë³¸ ì´ë¯¸ì§€ ë„ˆë¹„ ì¶”ì¶œ
+    int srcHeight = srcImg.getHeight(null); // ì›ë³¸ ì´ë¯¸ì§€ ë†’ì´ ì¶”ì¶œ
 
-    int destWidth = -1, destHeight = -1; // ´ë»ó ÀÌ¹ÌÁö Å©±â ÃÊ±âÈ­
+    int destWidth = -1, destHeight = -1; // ëŒ€ìƒ ì´ë¯¸ì§€ í¬ê¸° ì´ˆê¸°í™”
 
-    if (width == SAME) { // ³Êºñ°¡ °°Àº °æ¿ì
+    if (width == SAME) { // ë„ˆë¹„ê°€ ê°™ì€ ê²½ìš°
       destWidth = srcWidth;
     } else if (width > 0) {
       destWidth = width;
     }
 
-    if (height == SAME) { // ³ôÀÌ°¡ °°Àº °æ¿ì
+    if (height == SAME) { // ë†’ì´ê°€ ê°™ì€ ê²½ìš°
       destHeight = srcHeight;
     } else if (height > 0) {
       destHeight = height;
     }
 
-    // ºñÀ²¿¡ µû¸¥ Å©±â °è»ê
+    // ë¹„ìœ¨ì— ë”°ë¥¸ í¬ê¸° ê³„ì‚°
     if (width == RATIO && height == RATIO) {
       destWidth = srcWidth;
       destHeight = srcHeight;
@@ -1217,7 +1217,7 @@ public class Utility {
       destHeight = (int) ((double) srcHeight * ratio);
     }
 
-    // ¸Ş¸ğ¸®¿¡ ´ë»ó ÀÌ¹ÌÁö »ı¼º
+    // ë©”ëª¨ë¦¬ì— ëŒ€ìƒ ì´ë¯¸ì§€ ìƒì„±
     Image imgTarget = srcImg.getScaledInstance(destWidth, destHeight,
         Image.SCALE_SMOOTH);
     int pixels[] = new int[destWidth * destHeight];
@@ -1232,31 +1232,31 @@ public class Utility {
         BufferedImage.TYPE_INT_RGB);
     destImg.setRGB(0, 0, destWidth, destHeight, pixels, 0, destWidth);
 
-    // ÆÄÀÏ¿¡ ±â·Ï
+    // íŒŒì¼ì— ê¸°ë¡
     ImageIO.write(destImg, "jpg", dest);
 
-    System.out.println(dest.getName() + " ÀÌ¹ÌÁö¸¦ »ı¼ºÇß½À´Ï´Ù.");
+    System.out.println(dest.getName() + " ì´ë¯¸ì§€ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.");
 
-    // ¿øº» ÆÄÀÏ »èÁ¦
+    // ì›ë³¸ íŒŒì¼ ì‚­ì œ
     boolean ret = Utility.deleteFile(dir + "/" + filename);
     if (ret == true) {
-      System.out.println("ÆÄÀÏÀ» »èÁ¦ Çß½À´Ï´Ù.: " + filename);
+      System.out.println("íŒŒì¼ì„ ì‚­ì œ í–ˆìŠµë‹ˆë‹¤.: " + filename);
     }
 
     return dest.getName();
   }
 
   /**
-   * ÀÌ¹ÌÁö »çÀÌÁî¸¦ º¯°æÇÏ¿© »õ·Î¿î ÀÌ¹ÌÁö¸¦ »ı¼ºÇÕ´Ï´Ù.
+   * ì´ë¯¸ì§€ ì‚¬ì´ì¦ˆë¥¼ ë³€ê²½í•˜ì—¬ ìƒˆë¡œìš´ ì´ë¯¸ì§€ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
    * 
    * @param src
-   *          ¿øº» ÀÌ¹ÌÁö
+   *          ì›ë³¸ ì´ë¯¸ì§€
    * @param dest
-   *          »ı¼ºµÇ´Â ÀÌ¹ÌÁö
+   *          ìƒì„±ë˜ëŠ” ì´ë¯¸ì§€
    * @param width
-   *          »ı¼ºµÉ ÀÌ¹ÌÁö ³Êºñ
+   *          ìƒì„±ë  ì´ë¯¸ì§€ ë„ˆë¹„
    * @param height
-   *          »ı¼ºµÉ ÀÌ¹ÌÁö ³ôÀÌ, ImageUtil.RATIO´Â ÀÚµ¿ ºñ·Ê ºñÀ²
+   *          ìƒì„±ë  ì´ë¯¸ì§€ ë†’ì´, ImageUtil.RATIOëŠ” ìë™ ë¹„ë¡€ ë¹„ìœ¨
    * @throws IOException
    */
   public static synchronized String imgResize(File src, File dest, int width, int height)
@@ -1265,35 +1265,35 @@ public class Utility {
     int SAME = -1;
 
     Image srcImg = null;
-    // ÆÄÀÏÀÇ È®ÀåÀÚ ÃßÃâ
+    // íŒŒì¼ì˜ í™•ì¥ì ì¶”ì¶œ
     String suffix = src.getName().substring(src.getName().lastIndexOf('.') + 1)
         .toLowerCase();
-    // ÀÌ¹ÌÁöÀÇ È®ÀåÀÚ¸¦ °Ë»öÇÏ¿© ÀÌ¹ÌÁö ÆÄÀÏÀÎÁö °Ë»ç
+    // ì´ë¯¸ì§€ì˜ í™•ì¥ìë¥¼ ê²€ìƒ‰í•˜ì—¬ ì´ë¯¸ì§€ íŒŒì¼ì¸ì§€ ê²€ì‚¬
     if (suffix.equals("jpg") || suffix.equals("bmp") || suffix.equals("png")
         || suffix.equals("gif")) {
-      srcImg = ImageIO.read(src); // ¸Ş¸ğ¸®¿¡ ÀÌ¹ÌÁö »ı¼º
+      srcImg = ImageIO.read(src); // ë©”ëª¨ë¦¬ì— ì´ë¯¸ì§€ ìƒì„±
     } else {
       srcImg = new ImageIcon(src.getAbsolutePath()).getImage();
     }
 
-    int srcWidth = srcImg.getWidth(null); // ¿øº» ÀÌ¹ÌÁö ³Êºñ ÃßÃâ
-    int srcHeight = srcImg.getHeight(null); // ¿øº» ÀÌ¹ÌÁö ³ôÀÌ ÃßÃâ
+    int srcWidth = srcImg.getWidth(null); // ì›ë³¸ ì´ë¯¸ì§€ ë„ˆë¹„ ì¶”ì¶œ
+    int srcHeight = srcImg.getHeight(null); // ì›ë³¸ ì´ë¯¸ì§€ ë†’ì´ ì¶”ì¶œ
 
-    int destWidth = -1, destHeight = -1; // ´ë»ó ÀÌ¹ÌÁö Å©±â ÃÊ±âÈ­
+    int destWidth = -1, destHeight = -1; // ëŒ€ìƒ ì´ë¯¸ì§€ í¬ê¸° ì´ˆê¸°í™”
 
-    if (width == SAME) { // ³Êºñ°¡ °°Àº °æ¿ì
+    if (width == SAME) { // ë„ˆë¹„ê°€ ê°™ì€ ê²½ìš°
       destWidth = srcWidth;
     } else if (width > 0) {
       destWidth = width;
     }
 
-    if (height == SAME) { // ³ôÀÌ°¡ °°Àº °æ¿ì
+    if (height == SAME) { // ë†’ì´ê°€ ê°™ì€ ê²½ìš°
       destHeight = srcHeight;
     } else if (height > 0) {
       destHeight = height;
     }
 
-    // ºñÀ²¿¡ µû¸¥ Å©±â °è»ê
+    // ë¹„ìœ¨ì— ë”°ë¥¸ í¬ê¸° ê³„ì‚°
     if (width == RATIO && height == RATIO) {
       destWidth = srcWidth;
       destHeight = srcHeight;
@@ -1305,7 +1305,7 @@ public class Utility {
       destHeight = (int) ((double) srcHeight * ratio);
     }
 
-    // ¸Ş¸ğ¸®¿¡ ´ë»ó ÀÌ¹ÌÁö »ı¼º
+    // ë©”ëª¨ë¦¬ì— ëŒ€ìƒ ì´ë¯¸ì§€ ìƒì„±
     Image imgTarget = srcImg.getScaledInstance(destWidth, destHeight,
         Image.SCALE_SMOOTH);
     int pixels[] = new int[destWidth * destHeight];
@@ -1320,16 +1320,16 @@ public class Utility {
         BufferedImage.TYPE_INT_RGB);
     destImg.setRGB(0, 0, destWidth, destHeight, pixels, 0, destWidth);
 
-    // ÆÄÀÏ¿¡ ±â·Ï
+    // íŒŒì¼ì— ê¸°ë¡
     ImageIO.write(destImg, "jpg", dest);
 
-    System.out.println(dest.getName() + " ÀÌ¹ÌÁö¸¦ »ı¼ºÇß½À´Ï´Ù.");
+    System.out.println(dest.getName() + " ì´ë¯¸ì§€ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.");
 
     return dest.getName();
   }
 
   /**
-   * FileUpload 1.2 ÇÑ±Û º¯È¯
+   * FileUpload 1.2 í•œê¸€ ë³€í™˜
    * 
    * @param str
    * @return
@@ -1346,7 +1346,7 @@ public class Utility {
   }
 
   /**
-   * ÀÌ¹ÌÁöÀÎÁö °Ë»ç
+   * ì´ë¯¸ì§€ì¸ì§€ ê²€ì‚¬
    * @param filename
    * @return
    */
@@ -1375,8 +1375,8 @@ public class Utility {
   }
 
   /**
-   * »õ·Î¿î ÀÌ¹ÌÁö ÆÄÀÏÀ» »ı¼ºÇÕ´Ï´Ù.
-   * @return 20110601_121003_1 Çü½ÄÀÇ ¹®ÀÚ¿­ ¸®ÅÏ
+   * ìƒˆë¡œìš´ ì´ë¯¸ì§€ íŒŒì¼ì„ ìƒì„±í•©ë‹ˆë‹¤.
+   * @return 20110601_121003_1 í˜•ì‹ì˜ ë¬¸ìì—´ ë¦¬í„´
    */
   public static String getNewPDSFilename(String extention){
       String filename = "";
